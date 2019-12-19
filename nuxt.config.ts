@@ -3,6 +3,8 @@ require("dotenv").config();
 
 const config: Configuration = {
   mode: "spa",
+  // srcDir: "app",
+
   /*
    ** Headers of the page
    */
@@ -23,6 +25,14 @@ const config: Configuration = {
    ** Customize the progress-bar color
    */
   loading: { color: "#fff" },
+  loadingIndicator: {
+    // name: "pulse",
+    // name: "wandering-cubes",
+    // name: "three-bounce",
+    // name: "chasing-dots",
+    color: "#ff99a3",
+    background: "white"
+  },
   /*
    ** Global CSS
    */
@@ -55,9 +65,20 @@ const config: Configuration = {
   },
   /*
    ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    // See https://github.com/nuxt-community/axios-module#options
+    proxy: true
+    // baseURL: "https://tsundoku.memory-lovers.now.sh"
+  },
+
+  // proxy: {
+  //   "/api/": {
+  //     target: "http://localhost:5001",
+  //     pathRewrite: { "^/api/": "" }
+  //   }
+  // },
+
   /**
    * nuxt-buefy
    * Doc: https://github.com/buefy/nuxt-buefy
@@ -66,14 +87,55 @@ const config: Configuration = {
   buefy: {
     css: false
   },
+
+  /**
+   * Sitemap
+   * Doc: https://github.com/nuxt-community/sitemap-module
+   */
+  // sitemap: {
+  //   path: "/sitemap.xml",
+  //   hostname: process.env.BASE_URL || "http://127.0.0.1:3000",
+  //   generate: true,
+  //   exclude: []
+  // },
+
+  /**
+   * Sentry
+   * Doc: https://github.com/nuxt-community/sentry-module
+   */
+  // sentry: {
+  //   dsn: process.env.SENTRY_DNS || "",
+  //   disabled: !process.env.SENTRY_DNS || process.env.NODE_ENV != "production",
+  //   config: { environment: process.env.NODE_ENV || "development" }
+  // },
+
+  terser: {
+    terserOptions: {
+      compress: { drop_console: process.env.NODE_ENV === "production" }
+    }
+  },
+
   /*
    ** Build configuration
    */
   build: {
+    publicPath: "/assets/",
+    extractCSS: true,
+
     /*
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+
+  generate: {
+    dir: "public",
+    fallback: true // '404.html' を使用したい場合
+  },
+
+  server: {
+    port: 3000, // デフォルト: 3000
+    host: "localhost" // デフォルト: localhost
   }
 };
 
