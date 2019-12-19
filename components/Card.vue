@@ -2,17 +2,11 @@
   <div class="column">
     <div class="card">
       <header class="card-header">
-        <p class="card-header-title has-text-grey">
-          {{ title }}
-        </p>
+        <p class="card-header-title has-text-grey">{{ title }}</p>
       </header>
       <div class="card-content">
         <div class="content has-text-centered">
-          <b-icon
-            :icon="icon"
-            size="is-large"
-            type="is-primary"
-          />
+          <b-icon :icon="icon" size="is-large" type="is-primary" />
         </div>
       </div>
       <footer class="card-footer">
@@ -26,17 +20,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    icon: {
-      type: String,
-      required: true
-    }
-  }
+<script lang="ts">
+import { Component, Vue, Prop } from "nuxt-property-decorator";
+
+@Component
+export default class Card extends Vue {
+  @Prop({ required: true }) title!: string;
+  @Prop({ required: true }) icon!: string;
 }
 </script>
