@@ -2,6 +2,14 @@
 
 Starter for Nuxt.js + TypeScript
 
+## Install
+
+```shell
+$ curl -SL https://github.com/memory-lovers/nuxt-template-with-ts-sass-ssr/archive/master.zip | tar -xf -
+$ ls
+# => nuxt-template-with-ts-sass-ssr-master/
+```
+
 ## Licence
 
 [MIT](https://github.com/memory-lovers/starter-nuxt-typescript/blob/master/LICENCE)
