@@ -30,7 +30,7 @@ const config: Configuration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ["~/plugins/firebase.ts"],
   /*
    ** Nuxt.js dev-modules
    */
@@ -47,6 +47,12 @@ const config: Configuration = {
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv"
   ],
+  /*
+   ** Router configuration
+   */
+  router: {
+    middleware: ["checkAuthed"]
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
