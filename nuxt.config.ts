@@ -26,7 +26,7 @@ const config: Configuration = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ["~/assets/css/buefy.scss", "~/assets/css/transition.scss"],
   /*
    ** Plugins to load before mounting the App
    */
@@ -52,6 +52,14 @@ const config: Configuration = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  /**
+   * nuxt-buefy
+   * Doc: https://github.com/buefy/nuxt-buefy
+   * Doc: https://buefy.org/documentation/constructor-options
+   */
+  buefy: {
+    css: false
+  },
   /*
    ** Build configuration
    */
