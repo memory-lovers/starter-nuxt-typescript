@@ -182,22 +182,22 @@ const config: Configuration = {
    * Sitemap
    * Doc: https://github.com/nuxt-community/sitemap-module
    */
-  // sitemap: {
-  //   path: "/sitemap.xml",
-  //   hostname: process.env.BASE_URL || "http://127.0.0.1:3000",
-  //   generate: true,
-  //   exclude: []
-  // },
+  sitemap: {
+    path: "/sitemap.xml",
+    hostname: process.env.BASE_URL || "http://127.0.0.1:3000",
+    generate: true,
+    exclude: []
+  },
 
   /**
    * Sentry
    * Doc: https://github.com/nuxt-community/sentry-module
    */
-  // sentry: {
-  //   dsn: process.env.SENTRY_DNS || "",
-  //   disabled: !process.env.SENTRY_DNS || process.env.NODE_ENV != "production",
-  //   config: { environment: process.env.NODE_ENV || "development" }
-  // },
+  sentry: {
+    dsn: process.env.SENTRY_DNS || "",
+    disabled: !process.env.SENTRY_DNS || process.env.NODE_ENV != "production",
+    config: { environment: process.env.NODE_ENV || "development" }
+  },
 
   /*
    ** Build configuration

@@ -19,6 +19,8 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
+    "@nuxtjs/sentry": "^3.0.1",
+    "@nuxtjs/sitemap": "^2.0.1",
     "core-js": "^2.6.9",
     "dayjs": "^1.8.18",
     "firebase": "^7.6.1",
