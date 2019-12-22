@@ -1,6 +1,12 @@
 import { Configuration } from "@nuxt/types";
 require("dotenv").config();
 
+const siteName = "Starter Nuxt TypeScript";
+const title = "Starter Nuxt TypeScript";
+const description = "Starter Nuxt TypeScript";
+const copryright = "Memory Lovers";
+const twitterId = "@MemoryLoverz";
+
 const config: Configuration = {
   mode: "spa",
   // srcDir: "app",
@@ -9,17 +15,101 @@ const config: Configuration = {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || "",
+    title: siteName,
+    htmlAttrs: {
+      lang: "ja"
+    },
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "author", content: copryright },
+      { name: "copyright", content: copryright },
       {
-        hid: "description",
-        name: "description",
-        content: process.env.npm_package_description || ""
+        name: "format-detection",
+        content: "telephone=no,email=no,address=no"
+      },
+
+      // For SEO
+      { hid: "description", name: "description", content: description },
+      { name: "application-name", content: siteName },
+
+      // For Android Chrome: Tab Color
+      { name: "theme-color", content: "#FFFFFF" },
+      // For Window8/10: Shortcut Icon
+      { name: "msapplication-config", content: "/browserconfig.xml" },
+      { name: "msapplication-TileColor", content: "#FFFFFF" },
+      { name: "msapplication-TileImage", content: "/mstile-144×144.png" },
+
+      // Twitter Card
+      {
+        hid: "twitter:card",
+        name: "twitter:card",
+        content: "summary_large_image"
+      }, // summary, summary_large_image, app, player cards
+      { hid: "twitter:site", name: "twitter:site", content: twitterId },
+      { hid: "twitter:creator", name: "twitter:creator", content: twitterId },
+
+      // For OGP / Social Meta Tag
+      {
+        hid: "og:type",
+        property: "og:type",
+        name: "og:type",
+        content: "website"
+      },
+      {
+        hid: "og:title",
+        property: "og:title",
+        name: "og:title",
+        content: title
+      },
+      {
+        hid: "og:description",
+        property: "og:description",
+        name: "og:description",
+        content: description
+      },
+      {
+        hid: "og:url",
+        property: "og:url",
+        name: "og:url",
+        content: process.env.BASE_URL || ""
+      },
+      {
+        hid: "og:image",
+        property: "og:image",
+        name: "og:image",
+        content: `${process.env.BASE_URL}/ogp.png`
+      },
+      {
+        hid: "og:site_name",
+        property: "og:site_name",
+        name: "og:site_name",
+        content: siteName
       }
+      // { name: "robots", content: "noindex" }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      // Favicon
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "shortcut icon", href: "/favicon.ico" },
+      // Favicon: iPhone/iPad
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/apple-touch-icon-180x180.png"
+      },
+      // Favicon: Safari
+      { rel: "mask-icon", href: "/safari-icon.svg", color: "#FFFFFF" },
+      // Favicon: Android Chrome
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192×192",
+        href: "/android-chrome-192x192.png"
+      },
+      { rel: "manifest", href: "/manifest.json" },
+      { hid: "canonical", rel: "canonical", href: process.env.BASE_URL || "" }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -92,27 +182,21 @@ const config: Configuration = {
    * Sitemap
    * Doc: https://github.com/nuxt-community/sitemap-module
    */
-  // sitemap: {
-  //   path: "/sitemap.xml",
-  //   hostname: process.env.BASE_URL || "http://127.0.0.1:3000",
-  //   generate: true,
-  //   exclude: []
-  // },
+  sitemap: {
+    path: "/sitemap.xml",
+    hostname: process.env.BASE_URL || "http://127.0.0.1:3000",
+    generate: true,
+    exclude: []
+  },
 
   /**
    * Sentry
    * Doc: https://github.com/nuxt-community/sentry-module
    */
-  // sentry: {
-  //   dsn: process.env.SENTRY_DNS || "",
-  //   disabled: !process.env.SENTRY_DNS || process.env.NODE_ENV != "production",
-  //   config: { environment: process.env.NODE_ENV || "development" }
-  // },
-
-  terser: {
-    terserOptions: {
-      compress: { drop_console: process.env.NODE_ENV === "production" }
-    }
+  sentry: {
+    dsn: process.env.SENTRY_DNS || "",
+    disabled: !process.env.SENTRY_DNS || process.env.NODE_ENV != "production",
+    config: { environment: process.env.NODE_ENV || "development" }
   },
 
   /*
@@ -121,6 +205,12 @@ const config: Configuration = {
   build: {
     publicPath: "/assets/",
     extractCSS: true,
+
+    terser: {
+      terserOptions: {
+        compress: { drop_console: process.env.NODE_ENV === "production" }
+      }
+    },
 
     /*
      ** You can extend webpack config here
