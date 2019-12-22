@@ -170,3 +170,7 @@ dist
 .tern-port
 
 
+# Custom Settings
+public
+.firebase
+static/sw.js

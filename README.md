@@ -5,7 +5,9 @@ Starter for Nuxt.js + TypeScript
 ## Install
 
 ```shell
-$ curl -SL https://github.com/memory-lovers/nuxt-template-with-ts-sass-ssr/archive/master.zip | tar -xf -
+$ mkdir ${PJ_NAME}
+$ cp ${PJ_NAME}
+$ curl -SL https://github.com/memory-lovers/starter-nuxt-typescript/archive/master.zip | tar -xf - --strip-components 1
 $ ls
 # => nuxt-template-with-ts-sass-ssr-master/
 ```

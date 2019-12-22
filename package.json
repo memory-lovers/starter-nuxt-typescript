@@ -8,13 +8,18 @@
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate"
+    "generate": "nuxt-ts generate",
+    "deploy": "npm run build && npm run deploy:hosting",
+    "deploy:hosting": "firebase deploy --only hosting",
+    "deploy:firestore:indexes": "firebase deploy --only firestore:indexes",
+    "deploy:firestore:rules": "firebase deploy --only firestore:rules"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.3.3",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
+    "core-js": "^2.6.9",
     "dayjs": "^1.8.18",
     "firebase": "^7.6.1",
     "nuxt": "^2.0.0",
