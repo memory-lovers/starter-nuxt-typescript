@@ -26,6 +26,7 @@
     "firebase": "^7.14.4",
     "nuxt": "^2.12.2",
     "nuxt-buefy": "^0.3.30",
+    "nuxt-client-init-module": "^0.1.8",
     "nuxt-property-decorator": "^2.7.2",
     "uuid4": "^1.1.4"
   },

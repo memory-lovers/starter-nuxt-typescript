@@ -130,7 +130,7 @@ const config: Configuration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/firebase.ts"],
+  plugins: [{ src: "~/plugins/firebase", ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -145,13 +145,15 @@ const config: Configuration = {
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
     // Doc: https://github.com/nuxt-community/dotenv-module
-    "@nuxtjs/dotenv"
+    "@nuxtjs/dotenv",
+    "@nuxtjs/sitemap",
+    "nuxt-client-init-module"
   ],
   /*
    ** Router configuration
    */
   router: {
-    middleware: ["checkAuthed"]
+    middleware: []
   },
   /*
    ** Axios module configuration
