@@ -1,30 +1,31 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators";
-import { UserState } from "~/types";
+import { UserState, User } from "types";
 
 @Module({ stateFactory: true, namespaced: true, name: "user" })
 export default class UserModule extends VuexModule implements UserState {
-  uid: string | null = null;
+  user: User | null = null;
 
   // ****************************
   // * Getters
   // ****************************
   get isLogin(): boolean {
-    return this.uid != null;
+    return this.user != null;
   }
 
   // ****************************
   // * Mutations
   // ****************************
   @Mutation
-  setUser(uid: string | null) {
-    this.uid = uid;
+  setUser(user: User | null) {
+    this.user = user;
   }
 
   // ****************************
   // * Actions
   // ****************************
   @Action
-  async login(uid: string | null) {
-    this.setUser(uid);
+  async login() {
+    // TODO login
+    // this.setUser(user);
   }
 }

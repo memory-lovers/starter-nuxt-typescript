@@ -1,9 +1,17 @@
 <template>
-  <nav class="navbar header has-shadow is-primary" role="navigation" aria-label="main navigation">
+  <nav
+    class="navbar header has-shadow is-primary"
+    role="navigation"
+    aria-label="main navigation"
+  >
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
+      <nuxt-link
+        class="navbar-item"
+        :to="{ name: 'index' }"
+        exact-active-class=""
+      >
         <img src="~assets/buefy.png" alt="Buefy" height="28" />
-      </a>
+      </nuxt-link>
 
       <div class="navbar-burger">
         <span />

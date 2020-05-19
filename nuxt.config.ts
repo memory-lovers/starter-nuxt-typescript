@@ -9,7 +9,7 @@ const twitterId = "@MemoryLoverz";
 
 const config: Configuration = {
   mode: "spa",
-  // srcDir: "app",
+  srcDir: "app",
 
   /*
    ** Headers of the page
@@ -130,28 +130,34 @@ const config: Configuration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/firebase.ts"],
+  plugins: [
+    "~/plugins/axios-accessor.ts",
+    { src: "~/plugins/firebase", ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ["@nuxt/typescript-build"],
+  buildModules: ["@nuxt/typescript-build", "@nuxt/components"],
   /*
    ** Nuxt.js modules
    */
   modules: [
+    "nuxt-client-init-module",
     // Doc: https://buefy.github.io/#/documentation
     "nuxt-buefy",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
     // Doc: https://github.com/nuxt-community/dotenv-module
-    "@nuxtjs/dotenv"
+    "@nuxtjs/dotenv",
+    "@nuxtjs/sitemap"
   ],
   /*
    ** Router configuration
    */
   router: {
-    middleware: ["checkAuthed"]
+    middleware: [],
+    linkExactActiveClass: "is-active"
   },
   /*
    ** Axios module configuration
@@ -226,6 +232,10 @@ const config: Configuration = {
   server: {
     port: 3000, // デフォルト: 3000
     host: "localhost" // デフォルト: localhost
+  },
+
+  dotenv: {
+    path: process.cwd()
   }
 };
 

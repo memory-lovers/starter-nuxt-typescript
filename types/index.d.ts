@@ -1,1 +1,2 @@
-export * from "~/types/store"
+export * from "./store";
+export * from "./model";

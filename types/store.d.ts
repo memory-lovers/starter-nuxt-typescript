@@ -1,3 +1,5 @@
+import { User } from "./model";
+
 export interface UserState {
-  uid: string | null;
+  user: User | null;
 }
