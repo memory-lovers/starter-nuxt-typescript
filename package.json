@@ -12,7 +12,8 @@
     "deploy": "npm run build && npm run deploy:hosting",
     "deploy:hosting": "firebase deploy --only hosting",
     "deploy:firestore:indexes": "firebase deploy --only firestore:indexes",
-    "deploy:firestore:rules": "firebase deploy --only firestore:rules"
+    "deploy:firestore:rules": "firebase deploy --only firestore:rules",
+    "deploy:function": "firebase deploy --only functions"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.7",

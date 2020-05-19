@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "outDir": "lib",
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "types": [
+      "@types/node",
+      "@firebase/firestore-types",
+      "@firebase/storage-types",
+      "../types"
+    ]
+  },
+  "compileOnSave": true,
+  "include": ["src"]
+}
