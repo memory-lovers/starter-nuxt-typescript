@@ -130,7 +130,10 @@ const config: Configuration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: "~/plugins/firebase", ssr: false }],
+  plugins: [
+    "~/plugins/axios-accessor.ts",
+    { src: "~/plugins/firebase", ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -139,6 +142,7 @@ const config: Configuration = {
    ** Nuxt.js modules
    */
   modules: [
+    "nuxt-client-init-module",
     // Doc: https://buefy.github.io/#/documentation
     "nuxt-buefy",
     // Doc: https://axios.nuxtjs.org/usage
@@ -146,14 +150,14 @@ const config: Configuration = {
     "@nuxtjs/pwa",
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",
-    "@nuxtjs/sitemap",
-    "nuxt-client-init-module"
+    "@nuxtjs/sitemap"
   ],
   /*
    ** Router configuration
    */
   router: {
-    middleware: []
+    middleware: [],
+    linkExactActiveClass: "is-active"
   },
   /*
    ** Axios module configuration

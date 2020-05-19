@@ -1,7 +1,8 @@
 import { Context } from "@nuxt/types";
 import { ActionTree, Store } from "vuex";
 import { ActionContext } from "vuex/types";
-import { initialiseStores, userStore } from "~/src/utils/store-accessor";
+import { initialiseStores, userStore } from "~/store/store-accessor";
+import axiosAccessor from "~/plugins/axios-accessor";
 import logger from "~/src/utils/logger";
 
 const initializer = (store: Store<any>) => initialiseStores(store);
@@ -20,6 +21,8 @@ export const actions: ActionTree<any, any> = {
 
   nuxtClientInit: async (context: RootActionContext, server: Context) => {
     try {
+      await axiosAccessor(server, v => {});
+
       if (!!userStore.isLogin) return;
       // TODO
     } catch (error) {
@@ -28,4 +31,4 @@ export const actions: ActionTree<any, any> = {
   }
 };
 
-export * from "~/src/utils/store-accessor";
+export * from "~/store/store-accessor";
