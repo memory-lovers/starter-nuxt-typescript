@@ -15,24 +15,24 @@
     "deploy:firestore:rules": "firebase deploy --only firestore:rules"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.3.3",
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxt/typescript-runtime": "^0.4.7",
+    "@nuxtjs/axios": "^5.10.3",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.0.0-0",
-    "@nuxtjs/sentry": "^3.0.1",
-    "@nuxtjs/sitemap": "^2.0.1",
+    "@nuxtjs/sentry": "^4.0.3",
+    "@nuxtjs/sitemap": "^2.3.0",
     "core-js": "^2.6.9",
-    "dayjs": "^1.8.18",
-    "firebase": "^7.6.1",
-    "nuxt": "^2.0.0",
-    "nuxt-buefy": "^0.3.2",
-    "nuxt-property-decorator": "^2.5.0",
+    "dayjs": "^1.8.27",
+    "firebase": "^7.14.4",
+    "nuxt": "^2.12.2",
+    "nuxt-buefy": "^0.3.30",
+    "nuxt-property-decorator": "^2.7.2",
     "uuid4": "^1.1.4"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^0.5.2",
-    "node-sass": "^4.13.0",
-    "sass-loader": "^8.0.0",
-    "vuex-module-decorators": "^0.11.0"
+    "@nuxt/typescript-build": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "vuex-module-decorators": "^0.17.0"
   }
 }
