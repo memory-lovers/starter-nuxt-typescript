@@ -16,7 +16,9 @@
         <a href="http://bulma.io/">Bulma</a>
       </card>
 
-      <card title="Lightweight" icon="arrange-bring-to-front">No other internal dependency</card>
+      <card title="Lightweight" icon="arrange-bring-to-front"
+        >No other internal dependency</card
+      >
     </div>
   </section>
 </template>
@@ -24,9 +26,6 @@
 <script>
 import { Component, Vue, Prop } from "nuxt-property-decorator";
 
-// components
-import Card from "~/components/Card.vue";
-
-@Component({ components: { Card } })
+@Component
 export default class IndexPage extends Vue {}
 </script>

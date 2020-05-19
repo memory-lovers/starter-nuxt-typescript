@@ -16,12 +16,7 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 
-// components
-import Header from "~/components/organisms/Header.vue";
-import SideMenu from "~/components/organisms/SideMenu.vue";
-import Footer from "~/components/organisms/Footer.vue";
-
-@Component({ components: { Header, SideMenu, Footer } })
+@Component
 export default class DefaultLayout extends Vue {
   private items = [
     {

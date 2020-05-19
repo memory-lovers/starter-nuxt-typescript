@@ -134,7 +134,7 @@ const config: Configuration = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ["@nuxt/typescript-build"],
+  buildModules: ["@nuxt/typescript-build", "@nuxt/components"],
   /*
    ** Nuxt.js modules
    */
@@ -228,6 +228,10 @@ const config: Configuration = {
   server: {
     port: 3000, // デフォルト: 3000
     host: "localhost" // デフォルト: localhost
+  },
+
+  dotenv: {
+    path: process.cwd()
   }
 };
 
