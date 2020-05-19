@@ -1,5 +1,5 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators";
-import { UserState } from "~/types";
+import { UserState } from "types";
 
 @Module({ stateFactory: true, namespaced: true, name: "user" })
 export default class UserModule extends VuexModule implements UserState {

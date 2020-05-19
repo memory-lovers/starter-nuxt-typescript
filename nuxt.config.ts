@@ -9,7 +9,7 @@ const twitterId = "@MemoryLoverz";
 
 const config: Configuration = {
   mode: "spa",
-  // srcDir: "app",
+  srcDir: "app",
 
   /*
    ** Headers of the page
