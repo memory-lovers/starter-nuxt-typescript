@@ -1,6 +1,13 @@
+// fonts
+$family-sans-serif: "M PLUS Rounded 1c", "Kosugi Maru", "Noto Sans JP",
+  BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+  "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial",
+  sans-serif;
+
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 @import "~assets/css/colors";
+@import "~assets/css/variables";
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -24,6 +31,14 @@ $colors: (
     $primary,
     $primary-invert
   ),
+  "secondary": (
+    $secondary,
+    $secondary-invert
+  ),
+  "accent": (
+    $accent,
+    $accent-invert
+  ),
   "info": (
     $info,
     $info-invert
@@ -43,8 +58,34 @@ $colors: (
   "twitter": (
     $twitter,
     $twitter-invert
+  ),
+  "facebook": (
+    $facebook,
+    $facebook-invert
+  ),
+  "line": (
+    $line,
+    $line-invert
+  ),
+  "pocket": (
+    $pocket,
+    $pocket-invert
+  ),
+  "hatebu": (
+    $hatebu,
+    $hatebu-invert
+  ),
+  "grey": (
+    $grey,
+    $grey-invert
   )
 );
+
+// text
+$text: $text-color;
+$text-invert: findColorInvert($text);
+$title-color: $text;
+$panel-block-color: $text;
 
 // Links
 $link: $primary;

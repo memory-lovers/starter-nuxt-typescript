@@ -34,6 +34,7 @@
   "devDependencies": {
     "@nuxt/components": "^0.2.3",
     "@nuxt/typescript-build": "^1.0.0",
+    "@nuxtjs/style-resources": "^1.0.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vuex-module-decorators": "^0.17.0"

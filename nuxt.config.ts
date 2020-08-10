@@ -1,37 +1,52 @@
 import { Configuration } from "@nuxt/types";
 require("dotenv").config();
 
-const siteName = "Starter Nuxt TypeScript";
-const title = "Starter Nuxt TypeScript";
-const description = "Starter Nuxt TypeScript";
-const copryright = "Memory Lovers";
-const twitterId = "@MemoryLoverz";
+const SITE_NAME = "Starter Nuxt TypeScript";
+const SITE_TITLE = "Starter Nuxt TypeScript";
+const SITE_DESC = "Starter Nuxt TypeScript";
+const COPYRIGHT = "Memory Lovers";
+const TWITTER_ID = "@MemoryLoverz";
+
+const LOADING_COLOR = "#ff99a3";
 
 const config: Configuration = {
   mode: "spa",
   srcDir: "app",
 
+  env: {
+    BASE_URL: process.env.BASE_URL || "",
+    API_KEY: process.env.API_KEY || "",
+    AUTH_DOMAIN: process.env.AUTH_DOMAIN || "",
+    DATABASE_URL: process.env.DATABASE_URL || "",
+    PROJECT_ID: process.env.PROJECT_ID || "",
+    STORAGE_BUCKET: process.env.STORAGE_BUCKET || "",
+    MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID || "",
+    APP_ID: process.env.APP_ID || "",
+    MEASUREMENT_ID: process.env.MEASUREMENT_ID || ""
+    // PUBLIC_VAPID_KEY: process.env.PUBLIC_VAPID_KEY || ""
+  },
+
   /*
    ** Headers of the page
    */
   head: {
-    title: siteName,
+    title: SITE_NAME,
     htmlAttrs: {
       lang: "ja"
     },
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "author", content: copryright },
-      { name: "copyright", content: copryright },
+      { name: "author", content: COPYRIGHT },
+      { name: "copyright", content: COPYRIGHT },
       {
         name: "format-detection",
         content: "telephone=no,email=no,address=no"
       },
 
       // For SEO
-      { hid: "description", name: "description", content: description },
-      { name: "application-name", content: siteName },
+      { hid: "description", name: "description", content: SITE_DESC },
+      { name: "application-name", content: SITE_NAME },
 
       // For Android Chrome: Tab Color
       { name: "theme-color", content: "#FFFFFF" },
@@ -46,8 +61,8 @@ const config: Configuration = {
         name: "twitter:card",
         content: "summary_large_image"
       }, // summary, summary_large_image, app, player cards
-      { hid: "twitter:site", name: "twitter:site", content: twitterId },
-      { hid: "twitter:creator", name: "twitter:creator", content: twitterId },
+      { hid: "twitter:site", name: "twitter:site", content: TWITTER_ID },
+      { hid: "twitter:creator", name: "twitter:creator", content: TWITTER_ID },
 
       // For OGP / Social Meta Tag
       {
@@ -60,13 +75,13 @@ const config: Configuration = {
         hid: "og:title",
         property: "og:title",
         name: "og:title",
-        content: title
+        content: SITE_TITLE
       },
       {
         hid: "og:description",
         property: "og:description",
         name: "og:description",
-        content: description
+        content: SITE_DESC
       },
       {
         hid: "og:url",
@@ -84,7 +99,7 @@ const config: Configuration = {
         hid: "og:site_name",
         property: "og:site_name",
         name: "og:site_name",
-        content: siteName
+        content: SITE_NAME
       }
       // { name: "robots", content: "noindex" }
     ],
@@ -107,7 +122,36 @@ const config: Configuration = {
         sizes: "192×192",
         href: "/android-chrome-192x192.png"
       },
-      { rel: "manifest", href: "/manifest.json" },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+        crossorigin: true
+      },
+      {
+        rel: "preconnect",
+        href: "https://firestore.googleapis.com",
+        crossorigin: true
+      },
+      {
+        rel: "preconnect",
+        href: "https://firebasestorage.googleapis.com",
+        crossorigin: true
+      },
+      // {
+      //   rel: "preconnect",
+      //   href: "https://www.googletagmanager.com",
+      //   crossorigin: true
+      // },
+      // {
+      //   rel: "preconnect",
+      //   href: "https://www.google-analytics.com",
+      //   crossorigin: true
+      // },
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap"
+      },
       { hid: "canonical", rel: "canonical", href: process.env.BASE_URL || "" }
     ]
   },
@@ -120,24 +164,34 @@ const config: Configuration = {
     // name: "wandering-cubes",
     // name: "three-bounce",
     // name: "chasing-dots",
-    color: "#ff99a3",
+    color: LOADING_COLOR,
     background: "white"
   },
   /*
    ** Global CSS
    */
   css: ["~/assets/css/buefy.scss", "~/assets/css/transition.scss"],
+
+  styleResources: {
+    scss: [
+      "~/assets/css/_variables.scss",
+      "~/assets/css/_colors.scss",
+      "~/assets/css/_breakpoints.scss"
+    ]
+  },
+
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    "~/plugins/axios-accessor.ts",
-    { src: "~/plugins/firebase", ssr: false }
-  ],
+  plugins: ["~/plugins/axios-accessor.ts", "~/plugins/firebase"],
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ["@nuxt/typescript-build", "@nuxt/components"],
+  buildModules: [
+    "@nuxt/typescript-build",
+    "@nuxt/components",
+    "@nuxtjs/style-resources"
+  ],
   /*
    ** Nuxt.js modules
    */
@@ -151,7 +205,12 @@ const config: Configuration = {
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",
     "@nuxtjs/sitemap"
+    // Doc: https://github.com/nuxt-community/sentry-module
+    // "@nuxtjs/sentry"
+    // "nuxt-user-agent",
+    // "@nuxtjs/google-adsense",
   ],
+
   /*
    ** Router configuration
    */
@@ -165,7 +224,6 @@ const config: Configuration = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
     proxy: true
-    // baseURL: "https://tsundoku.memory-lovers.now.sh"
   },
 
   // proxy: {
@@ -182,7 +240,24 @@ const config: Configuration = {
    */
   buefy: {
     css: false
+    // materialDesignIcons: false,
+    // defaultIconPack: "fas",
+    // defaultIconComponent: "font-awesome-icon"
   },
+
+  // fontawesome: {
+  //   component: "font-awesome-icon",
+  //   imports: [
+  //     {
+  //       set: "@fortawesome/free-solid-svg-icons",
+  //       icons: ["fas"]
+  //     },
+  //     {
+  //       set: "@fortawesome/free-brands-svg-icons",
+  //       icons: ["fab"]
+  //     }
+  //   ]
+  // },
 
   /**
    * Sitemap
@@ -193,6 +268,44 @@ const config: Configuration = {
     hostname: process.env.BASE_URL || "http://127.0.0.1:3000",
     generate: true,
     exclude: []
+  },
+
+  pwa: {
+    manifest: {
+      name: SITE_NAME,
+      short_name: SITE_NAME,
+      lang: "ja",
+      description: SITE_DESC,
+      start_url: "/",
+      display: "standalone",
+      background_color: "#ffffff",
+      theme_color: "#039b7e",
+      orientation: "any",
+      icons: [36, 48, 72, 96, 128, 144, 152, 192, 256, 384, 512].map(v => {
+        return {
+          src: `/android-chrome-${v}x${v}.png`,
+          sizes: `${v}x${v}`,
+          type: "image/png"
+        };
+      })
+      // gcm_sender_id: process.env.MESSAGING_SENDER_ID || ""
+    },
+    runtimeCaching: [
+      {
+        urlPattern: `^https://fonts.googleapis.com/`,
+        handler: "cacheFirst",
+        method: "GET",
+        strategyOptions: {
+          cacheName: "google-fonts-cache",
+          cacheExpiration: {
+            maxAgeSeconds: 60 * 60 * 24 * 30
+          },
+          cacheableResponse: {
+            statuses: [0, 200]
+          }
+        }
+      }
+    ]
   },
 
   /**

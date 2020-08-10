@@ -1,5 +1,10 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators";
-import { UserState, User } from "types";
+import { User, AuthInfo } from "types";
+import { authUseCase } from "~/src/usecase/AuthUseCase";
+
+export interface UserState {
+  user: User | null;
+}
 
 @Module({ stateFactory: true, namespaced: true, name: "user" })
 export default class UserModule extends VuexModule implements UserState {
@@ -15,17 +20,28 @@ export default class UserModule extends VuexModule implements UserState {
   // ****************************
   // * Mutations
   // ****************************
-  @Mutation
-  setUser(user: User | null) {
-    this.user = user;
+  SET_USER(authInfo: AuthInfo | null) {
+    this.user = !!authInfo ? authInfo.user : null;
   }
 
   // ****************************
   // * Actions
   // ****************************
-  @Action
+  @Action({ rawError: true })
   async login() {
-    // TODO login
-    // this.setUser(user);
+    const user = await authUseCase.login();
+    this.SET_USER(user);
+  }
+
+  @Action({ rawError: true })
+  async logout() {
+    await authUseCase.logout();
+    this.SET_USER(null);
+  }
+
+  @Action({ rawError: true })
+  async loginByInit() {
+    const authInfo = await authUseCase.loginByInit();
+    this.SET_USER(authInfo);
   }
 }

@@ -1,5 +1,25 @@
 // Set your colors
 $primary: #ff99a3;
 $primary-invert: findColorInvert($primary);
-$twitter: #4099ff;
+
+$secondary: #ff99a3;
+$secondary-invert: findColorInvert($secondary);
+
+$accent: #ff99a3;
+$accent-invert: findColorInvert($accent);
+
+$twitter: #1da1f2;
 $twitter-invert: findColorInvert($twitter);
+$facebook: #3b5998;
+$facebook-invert: findColorInvert($facebook);
+$line: #00b901;
+$line-invert: findColorInvert($line);
+$pocket: #dc3d50;
+$pocket-invert: findColorInvert($pocket);
+$hatebu: #00a4de;
+$hatebu-invert: findColorInvert($hatebu);
+
+$grey: #58595b;
+$grey-invert: findColorInvert($grey);
+
+$text-color: #3a3a45;
