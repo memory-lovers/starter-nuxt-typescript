@@ -79,7 +79,7 @@ export default class HeadMixin extends Vue {
       { hid: "og:site_name", property: "og:site_name", content: SITE_NAME }
     ];
 
-    if (!!info.isCurrentPath) {
+    if (!!info.isNoIndex) {
       meta.push({ name: "robots", content: "noindex" });
     }
 

@@ -23,7 +23,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue, Prop } from "nuxt-property-decorator";
 
 @Component
