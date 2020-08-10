@@ -12,6 +12,7 @@ const LOADING_COLOR = "#ff99a3";
 const config: Configuration = {
   mode: "spa",
   srcDir: "app",
+  components: true,
 
   env: {
     BASE_URL: process.env.BASE_URL || "",
@@ -25,6 +26,11 @@ const config: Configuration = {
     MEASUREMENT_ID: process.env.MEASUREMENT_ID || ""
     // PUBLIC_VAPID_KEY: process.env.PUBLIC_VAPID_KEY || ""
   },
+
+  /*
+   ** Nuxt.js dev-modules
+   */
+  buildModules: ["@nuxt/typescript-build", "@nuxtjs/style-resources"],
 
   /*
    ** Headers of the page
@@ -184,14 +190,7 @@ const config: Configuration = {
    ** Plugins to load before mounting the App
    */
   plugins: ["~/plugins/axios-accessor.ts", "~/plugins/firebase"],
-  /*
-   ** Nuxt.js dev-modules
-   */
-  buildModules: [
-    "@nuxt/typescript-build",
-    "@nuxt/components",
-    "@nuxtjs/style-resources"
-  ],
+
   /*
    ** Nuxt.js modules
    */
