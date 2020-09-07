@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/browser";
-const isDev = process.env.baseUrl != "https://tsundoku.site";
+const isDev = process.env.NODE_ENV != "production";
 const isProd = !isDev;
 
 class ExLogger {
