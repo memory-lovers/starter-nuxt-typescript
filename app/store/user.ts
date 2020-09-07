@@ -29,7 +29,7 @@ export default class UserModule extends VuexModule implements UserState {
   // ****************************
   @Action({ rawError: true })
   async login() {
-    const user = await authUseCase.login();
+    const user = await authUseCase.loginWithPopup();
     this.SET_USER(user);
   }
 

@@ -1,41 +1,18 @@
-import { FirebaseFirestore } from "@firebase/firestore-types";
-import { User, UpdateParam } from "types";
-import firebase from "~/plugins/firebase";
+import { User } from "types";
+import { SimgleUseCase } from "~/src/usecase/common/SimgleUseCase";
 
-class UserUseCase {
-  private db: FirebaseFirestore;
-
-  constructor() {
-    this.db = firebase.firestore();
-  }
+const ROOT = "users";
+class UserUseCase extends SimgleUseCase<User> {
+  protected root: string = ROOT;
+  protected idKey: string = "uid";
 
   // ****************************
   // * 参照
   // ****************************
-  public async findById(uid: string): Promise<User | null> {
-    if (!uid) return null;
-    const ref = this.db.collection("users").doc(uid);
-    const user = (await ref.get()).data() as User | undefined;
-    return user || null;
-  }
 
   // ****************************
   // * 更新
   // ****************************
-  public async add(user: User): Promise<void> {
-    const ref = this.db.collection("users").doc(user.uid);
-    await ref.set(user);
-  }
-
-  public async edit(user: User, param: UpdateParam): Promise<void> {
-    const ref = this.db.collection("users").doc(user.uid);
-    await ref.set({ [param.key]: param.value }, { merge: true });
-  }
-
-  public async del(user: User): Promise<void> {
-    const ref = this.db.collection("users").doc(user.uid);
-    await ref.delete();
-  }
 
   // ****************************
   // * private

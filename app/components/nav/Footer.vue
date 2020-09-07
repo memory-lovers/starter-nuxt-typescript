@@ -10,14 +10,9 @@
               :href="item.href"
               target="_blank"
               rel="noopener"
-            >{{ item.title }}</a>
-          </span>
-        </template>
-
-        <template v-if="!!item.to">
-          <span :key="`div_${index}`" class="is-hidden-touch" v-if="index != 0">/</span>
-          <span :key="index" class="is-hidden-touch">
-            <nuxt-link class="footer-item has-text-white" :to="item.to">{{ item.title }}</nuxt-link>
+            >
+              {{ item.title }}
+            </a>
           </span>
         </template>
       </template>
@@ -39,24 +34,24 @@ export default class Footer extends Vue {
   private fotterItems = [
     {
       title: "めもらばについて",
-      href: "https://memory-lovers.com"
+      href: "https://memory-lovers.com",
     },
     {
       title: "プライバシーポリシー",
-      href: "https://memory-lovers.com/policy/"
+      href: "https://memory-lovers.com/policy/",
     },
     {
       title: "利用規約",
-      href: "https://memory-lovers.com/tos/"
+      href: "https://memory-lovers.com/tos/",
     },
     {
       title: "お問い合わせ",
-      href: "https://forms.gle/yzoQfkLh5TXP4VrY7"
+      href: "https://forms.gle/yzoQfkLh5TXP4VrY7",
     },
     {
       title: "公式Twitter",
-      href: "https://twitter.com/MemoryLoverz"
-    }
+      href: "https://twitter.com/MemoryLoverz",
+    },
   ];
 }
 </script>
