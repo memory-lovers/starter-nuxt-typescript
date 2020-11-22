@@ -1,0 +1,25 @@
+.flex-space-between {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.disabled-resize {
+  textarea,
+  .textarea {
+    resize: none !important;
+  }
+}
+
+.is-pos-reletive {
+  position: relative;
+}
+
+.is-cursor-pointer {
+  cursor: pointer;
+}
+
+.is-text-right {
+  text-align: right;
+}

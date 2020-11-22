@@ -173,4 +173,4 @@ dist
 # Custom Settings
 public
 .firebase
-**/static/sw.js
+**/sw.js

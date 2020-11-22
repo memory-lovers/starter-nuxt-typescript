@@ -31,7 +31,7 @@ class AuthUseCase {
   // ****************************
   // * LOGIN with redirect
   // ****************************
-  async loginWithRedirect(authType: AuthType = "twitter") {
+  async loginWithRedirect(authType: AuthType = "google") {
     const providor = this.getProvider(authType);
     await this.auth.signInWithRedirect(providor);
   }

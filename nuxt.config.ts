@@ -1,4 +1,4 @@
-import { Configuration } from "@nuxt/types";
+import { NuxtConfig } from "@nuxt/types";
 require("dotenv").config();
 
 const SITE_NAME = "Starter Nuxt TypeScript";
@@ -9,7 +9,7 @@ const TWITTER_ID = "@MemoryLoverz";
 
 const LOADING_COLOR = "#ff99a3";
 
-const config: Configuration = {
+const config: NuxtConfig = {
   mode: "spa",
   srcDir: "app",
   components: true,
@@ -278,7 +278,7 @@ const config: Configuration = {
       start_url: "/",
       display: "standalone",
       background_color: "#ffffff",
-      theme_color: "#039b7e",
+      theme_color: LOADING_COLOR,
       orientation: "any",
       icons: [36, 48, 72, 96, 128, 144, 152, 192, 256, 384, 512].map(v => {
         return {

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar header has-shadow is-primary"
+    class="navbar header is-primary is-mobile"
     role="navigation"
     aria-label="main navigation"
   >
@@ -13,11 +13,9 @@
         <img src="~assets/buefy.png" alt="Buefy" height="28" />
       </nuxt-link>
 
-      <div class="navbar-burger">
-        <span />
-        <span />
-        <span />
-      </div>
+      <a class="navbar-item has-text-white" @click="onClick">
+        <b-icon icon="menu" />
+      </a>
     </div>
   </nav>
 </template>
@@ -26,5 +24,32 @@
 import { Component, Vue } from "nuxt-property-decorator";
 
 @Component
-export default class Header extends Vue {}
+export default class Header extends Vue {
+  private onClick() {
+    this.$emit("click");
+  }
+}
 </script>
+
+<style lang="scss" scoped>
+.logo {
+  padding: 0 8px;
+  > img {
+    max-height: $navbar-height;
+  }
+}
+
+.navbar {
+  &.is-mobile {
+    display: block;
+  }
+}
+
+.navbar-brand {
+  > .navbar-item {
+    &:nth-of-type(2) {
+      margin-left: auto;
+    }
+  }
+}
+</style>
