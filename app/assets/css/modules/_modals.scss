@@ -1,0 +1,58 @@
+@import "~assets/css/variables";
+
+// modal
+.modal-sheet-background {
+  background-color: rgba(10, 10, 10, 0.3);
+}
+
+// modal sheet
+.modal-sheet-content {
+  background: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(100vh - #{$navbar-height});
+  width: 100%;
+  max-width: $screen-max-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 0.5rem 0.5rem 2rem 0.5rem;
+}
+
+.modal-sheet-wrapper {
+  max-width: $screen-max-width;
+  margin: 0 auto;
+}
+
+// modal dialog
+.modal-dialog-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+
+  width: 100%;
+  max-width: $screen-max-width;
+
+  z-index: 10;
+}
+
+.modal-dialog-wrapper {
+  background: white;
+
+  width: 100%;
+  padding: 16px;
+
+  border-radius: 8px;
+}
+
+.modal-dialog-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  margin-top: 20px;
+  margin-bottom: -4px;
+}

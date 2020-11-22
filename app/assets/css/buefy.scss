@@ -8,6 +8,7 @@ $family-sans-serif: "M PLUS Rounded 1c", "Kosugi Maru", "Noto Sans JP",
 @import "~bulma/sass/utilities/_all";
 @import "~assets/css/colors";
 @import "~assets/css/variables";
+@import "~assets/css/modules/typography";
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -98,3 +99,45 @@ $footer-background-color: $primary;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+@import "~assets/css/modules/modals";
+@import "~assets/css/modules/utils";
+@import "~assets/css/modules/spacing";
+
+.container {
+  padding: 1rem 0.5rem;
+}
+
+.button {
+  &.has-shadow {
+    box-shadow: 2px 2px 4px rgba($text-color, 0.5);
+  }
+}
+
+svg {
+  fill: currentColor;
+  width: 100%;
+  height: 100%;
+  vertical-align: -0.16rem;
+}
+
+.user-icon {
+  box-shadow: 2px 2px 4px rgba($grey, 0.2);
+  border-radius: 50%;
+  overflow: hidden;
+
+  width: 96px;
+  height: 96px;
+  margin: 8px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+a {
+  &.has-underline {
+    text-decoration: underline;
+  }
+}

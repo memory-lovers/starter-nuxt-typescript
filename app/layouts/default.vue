@@ -1,35 +1,32 @@
 <template>
   <div class="main-container">
-    <Header />
+    <Header @click="activeMenu = !activeMenu" />
 
-    <section class="main-content columns">
-      <SideMenu :items="items" />
-
-      <div class="container column is-10">
-        <nuxt />
-      </div>
+    <section class="main-content">
+      <nuxt />
     </section>
+
+    <DrawerMenu :active.sync="activeMenu" @logout="onClickLogout" />
     <Footer />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
+import { notifyHelper } from "~/src/helper/NotifyHelper";
+import { userStore } from "~/store";
 
 @Component
 export default class DefaultLayout extends Vue {
-  private items = [
-    {
-      title: "Home",
-      icon: "home",
-      to: { name: "index" }
-    },
-    {
-      title: "Inspire",
-      icon: "lightbulb",
-      to: { name: "inspire" }
-    }
-  ];
+  public activeMenu: boolean = false;
+
+  private async onClickLogout() {
+    this.activeMenu = false;
+
+    await userStore.logout();
+    notifyHelper.success("またね！");
+    this.$router.push("/login");
+  }
 }
 </script>
 
