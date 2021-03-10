@@ -10,9 +10,10 @@ const TWITTER_ID = "@MemoryLoverz";
 const LOADING_COLOR = "#ff99a3";
 
 const config: NuxtConfig = {
-  mode: "spa",
   srcDir: "app",
-  components: true,
+  ssr: false,
+  target: "server",
+  components: ["~/components/", "~/components/nav/", "~/components/common/"],
 
   env: {
     BASE_URL: process.env.BASE_URL || "",

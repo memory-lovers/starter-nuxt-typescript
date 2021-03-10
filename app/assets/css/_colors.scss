@@ -1,12 +1,18 @@
 // Set your colors
 $primary: #ff99a3;
 $primary-invert: findColorInvert($primary);
+$primary-light: findLightColor($primary);
+$primary-dark: findDarkColor($primary);
 
 $secondary: #ff99a3;
 $secondary-invert: findColorInvert($secondary);
+$secondary-light: findLightColor($secondary);
+$secondary-dark: findDarkColor($secondary);
 
 $accent: #ff99a3;
 $accent-invert: findColorInvert($accent);
+$accent-light: findLightColor($accent);
+$accent-dark: findDarkColor($accent);
 
 $twitter: #1da1f2;
 $twitter-invert: findColorInvert($twitter);

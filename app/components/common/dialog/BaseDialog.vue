@@ -6,12 +6,16 @@
         <div class="modal-dialog-wrapper">
           <slot />
 
-          <div class="modal-dialog-button">
-            <b-button type="is-text" @click="close">{{ cancelLabel }}</b-button>
-            <b-button :type="type" @click="confirm">{{
-              confirmLabel
-            }}</b-button>
-          </div>
+          <slot name="footer">
+            <div class="modal-dialog-button">
+              <b-button type="is-text" @click="close">{{
+                cancelLabel
+              }}</b-button>
+              <b-button :type="type" outlined @click="confirm">{{
+                confirmLabel
+              }}</b-button>
+            </div>
+          </slot>
         </div>
       </div>
     </div>
@@ -22,12 +26,11 @@
 import { Component, Vue, Prop } from "nuxt-property-decorator";
 
 @Component
-export default class ConfirmDialog extends Vue {
+export default class BaseDialog extends Vue {
+  @Prop({ required: true }) active!: boolean;
   @Prop({ default: "OK" }) confirmLabel!: string;
   @Prop({ default: "Cancel" }) cancelLabel!: string;
   @Prop({ default: "is-primary" }) type!: string;
-
-  protected active: boolean = false;
 
   // ****************************************************
   // * computed
@@ -36,11 +39,11 @@ export default class ConfirmDialog extends Vue {
   // * methods
   // ****************************************************
   public show() {
-    this.active = true;
+    this.$emit("update:active", true);
   }
 
   public close() {
-    this.active = false;
+    this.$emit("update:active", false);
   }
 
   public async confirm() {

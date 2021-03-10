@@ -11,50 +11,18 @@ $family-sans-serif: "M PLUS Rounded 1c", "Kosugi Maru", "Noto Sans JP",
 @import "~assets/css/modules/typography";
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
-$colors: (
-  "white": (
-    $white,
-    $black
-  ),
-  "black": (
-    $black,
-    $white
-  ),
-  "light": (
-    $light,
-    $light-invert
-  ),
-  "dark": (
-    $dark,
-    $dark-invert
-  ),
-  "primary": (
-    $primary,
-    $primary-invert
-  ),
+$custom-colors: (
   "secondary": (
     $secondary,
-    $secondary-invert
+    $secondary-invert,
+    $secondary-light,
+    $secondary-dark
   ),
   "accent": (
     $accent,
-    $accent-invert
-  ),
-  "info": (
-    $info,
-    $info-invert
-  ),
-  "success": (
-    $success,
-    $success-invert
-  ),
-  "warning": (
-    $warning,
-    $warning-invert
-  ),
-  "danger": (
-    $danger,
-    $danger-invert
+    $accent-invert,
+    $accent-light,
+    $accent-dark
   ),
   "twitter": (
     $twitter,
@@ -75,11 +43,65 @@ $colors: (
   "hatebu": (
     $hatebu,
     $hatebu-invert
-  ),
-  "grey": (
-    $grey,
-    $grey-invert
   )
+);
+
+$colors: mergeColorMaps(
+  (
+    "white": (
+      $white,
+      $black
+    ),
+    "black": (
+      $black,
+      $white
+    ),
+    "light": (
+      $light,
+      $light-invert
+    ),
+    "dark": (
+      $dark,
+      $dark-invert
+    ),
+    "primary": (
+      $primary,
+      $primary-invert,
+      $primary-light,
+      $primary-dark
+    ),
+    "link": (
+      $link,
+      $link-invert,
+      $link-light,
+      $link-dark
+    ),
+    "info": (
+      $info,
+      $info-invert,
+      $info-light,
+      $info-dark
+    ),
+    "success": (
+      $success,
+      $success-invert,
+      $success-light,
+      $success-dark
+    ),
+    "warning": (
+      $warning,
+      $warning-invert,
+      $warning-light,
+      $warning-dark
+    ),
+    "danger": (
+      $danger,
+      $danger-invert,
+      $danger-light,
+      $danger-dark
+    )
+  ),
+  $custom-colors
 );
 
 // text
