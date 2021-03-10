@@ -174,3 +174,5 @@ dist
 public
 .firebase
 **/sw.js
+.emulator/*
+!**/.gitkeep
