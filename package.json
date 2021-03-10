@@ -5,15 +5,18 @@
   "author": "Memory Lovers",
   "private": true,
   "scripts": {
+    "firebase-cli": "firebase-multi use mine firebase",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "deploy": "npm run build && npm run deploy:hosting",
-    "deploy:hosting": "firebase deploy --only hosting",
-    "deploy:firestore:indexes": "firebase deploy --only firestore:indexes",
-    "deploy:firestore:rules": "firebase deploy --only firestore:rules",
-    "deploy:function": "firebase deploy --only functions"
+    "deploy:hosting": "npm run firebase-cli -- deploy --only hosting",
+    "deploy:firestore:indexes": "npm run firebase-cli -- deploy --only firestore:indexes",
+    "deploy:firestore:rules": "npm run firebase-cli -- deploy --only firestore:rules",
+    "deploy:function": "npm run firebase-cli -- deploy --only functions",
+    "emulator": "npm run firebase-cli -- emulators:start --import=./.emulator --export-on-exit",
+    "ts": "npx ts-node -O '{ \"module\": \"commonjs\" }'"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
