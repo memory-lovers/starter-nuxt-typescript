@@ -176,3 +176,4 @@ public
 **/sw.js
 .emulator/*
 !**/.gitkeep
+.firebaserc
