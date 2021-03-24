@@ -19,3 +19,8 @@ export type UpdateParam = {
   key: string;
   value: any;
 };
+
+export interface Dialog<P> {
+  show(param: P): void;
+  close(): void;
+}
