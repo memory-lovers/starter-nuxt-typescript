@@ -10,7 +10,12 @@
         :to="{ name: 'index' }"
         exact-active-class=""
       >
-        <img src="~assets/buefy.png" alt="Buefy" height="28" />
+        <span class="has-text-weight-bold">Start Template</span>
+      </nuxt-link>
+
+      <nuxt-link class="navbar-item" :to="{ name: 'home' }" v-if="isLogin">
+        <b-icon icon="home" />
+        <span>HOME</span>
       </nuxt-link>
 
       <a class="navbar-item has-text-white" @click="onClick">
@@ -22,9 +27,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
+import { userStore } from "~/store";
 
 @Component
 export default class Header extends Vue {
+  private get isLogin() {
+    return userStore.isLogin;
+  }
+
   private onClick() {
     this.$emit("click");
   }
@@ -47,7 +57,7 @@ export default class Header extends Vue {
 
 .navbar-brand {
   > .navbar-item {
-    &:nth-of-type(2) {
+    &:nth-last-of-type(1) {
       margin-left: auto;
     }
   }

@@ -24,7 +24,7 @@ export const actions: ActionTree<any, any> = {
       await axiosAccessor(server, v => {});
 
       if (!!userStore.isLogin) return;
-      // TODO
+      await userStore.loginByInit();
     } catch (error) {
       logger.error(`Error in nuxtClientInit: ${error}`, error);
     }

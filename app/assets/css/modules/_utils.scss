@@ -5,6 +5,13 @@
   align-items: center;
 }
 
+.flex-justify-center {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .disabled-resize {
   textarea,
   .textarea {

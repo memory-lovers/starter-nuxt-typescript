@@ -8,3 +8,25 @@
   border-bottom: 1px dotted currentColor;
   margin-bottom: 1rem;
 }
+
+.page-subtitle {
+  font-size: 1rem;
+  text-align: left;
+  border-bottom: 1px dotted currentColor;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.text-valign-bottom {
+  vertical-align: bottom !important;
+  td {
+    vertical-align: bottom !important;
+  }
+}
+
+.text-valign-middle {
+  vertical-align: middle !important;
+  td {
+    vertical-align: middle !important;
+  }
+}

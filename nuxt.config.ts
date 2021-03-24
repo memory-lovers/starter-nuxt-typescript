@@ -1,4 +1,5 @@
 import { NuxtConfig } from "@nuxt/types";
+import * as fs from "fs";
 require("dotenv").config();
 
 const SITE_NAME = "Starter Nuxt TypeScript";
@@ -9,17 +10,33 @@ const TWITTER_ID = "@MemoryLoverz";
 
 const LOADING_COLOR = "#ff99a3";
 
+const readdirRecursively = (dir: string, dirs: string[] = []) => {
+  dirs.push(dir);
+  fs.readdirSync(dir).forEach(file => {
+    const dirPath = `${dir}/${file}`;
+    if (fs.statSync(dirPath).isDirectory()) {
+      readdirRecursively(dirPath, dirs);
+    }
+  });
+
+  return dirs;
+};
+
+const components = readdirRecursively("./app/components").map(v =>
+  v.replace("./app/components", "~/components")
+);
+console.info(`components=${JSON.stringify(components, null, 2)}`);
+
 const config: NuxtConfig = {
   srcDir: "app",
   ssr: false,
   target: "server",
-  components: ["~/components/", "~/components/nav/", "~/components/common/"],
+  components: components,
 
   env: {
     BASE_URL: process.env.BASE_URL || "",
     API_KEY: process.env.API_KEY || "",
     AUTH_DOMAIN: process.env.AUTH_DOMAIN || "",
-    DATABASE_URL: process.env.DATABASE_URL || "",
     PROJECT_ID: process.env.PROJECT_ID || "",
     STORAGE_BUCKET: process.env.STORAGE_BUCKET || "",
     MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID || "",
@@ -107,8 +124,8 @@ const config: NuxtConfig = {
         property: "og:site_name",
         name: "og:site_name",
         content: SITE_NAME
-      }
-      // { name: "robots", content: "noindex" }
+      },
+      { name: "robots", content: "noindex" }
     ],
     link: [
       // Favicon
@@ -190,7 +207,11 @@ const config: NuxtConfig = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/axios-accessor.ts", "~/plugins/firebase"],
+  plugins: [
+    "~/plugins/axios-accessor.ts",
+    "~/plugins/firebase",
+    "~/plugins/vee-validate"
+  ],
 
   /*
    ** Nuxt.js modules
@@ -204,11 +225,13 @@ const config: NuxtConfig = {
     "@nuxtjs/pwa",
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",
-    "@nuxtjs/sitemap"
+    "@nuxtjs/sitemap",
     // Doc: https://github.com/nuxt-community/sentry-module
-    // "@nuxtjs/sentry"
+    "@nuxtjs/sentry",
     // "nuxt-user-agent",
     // "@nuxtjs/google-adsense",
+    // Doc: https://github.com/webcore-it/nuxt-clipboard2
+    "nuxt-clipboard2"
   ],
 
   /*
