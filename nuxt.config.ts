@@ -41,8 +41,11 @@ const config: NuxtConfig = {
     STORAGE_BUCKET: process.env.STORAGE_BUCKET || "",
     MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID || "",
     APP_ID: process.env.APP_ID || "",
-    MEASUREMENT_ID: process.env.MEASUREMENT_ID || ""
+    MEASUREMENT_ID: process.env.MEASUREMENT_ID || "",
     // PUBLIC_VAPID_KEY: process.env.PUBLIC_VAPID_KEY || ""
+    ADSENSE_CLIENT_ID: process.env.ADSENSE_CLIENT_ID || "",
+    ADSENSE_ANALYTICS_ACCOUNT: process.env.ADSENSE_ANALYTICS_ACCOUNT || "",
+    ADSENSE_DOMAIN_NAME: process.env.ADSENSE_DOMAIN_NAME || ""
   },
 
   /*
@@ -217,21 +220,26 @@ const config: NuxtConfig = {
    ** Nuxt.js modules
    */
   modules: [
+    // Doc: https://github.com/potato4d/nuxt-client-init-module
     "nuxt-client-init-module",
     // Doc: https://buefy.github.io/#/documentation
     "nuxt-buefy",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
+    // Doc: https://pwa.nuxtjs.org/
     "@nuxtjs/pwa",
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",
+    // Doc: https://github.com/nuxt-community/sitemap-module
     "@nuxtjs/sitemap",
     // Doc: https://github.com/nuxt-community/sentry-module
-    "@nuxtjs/sentry",
+    "@nuxtjs/sentry"
+    // Doc: https://github.com/fukuiretu/nuxt-user-agent
     // "nuxt-user-agent",
+    // Doc: https://github.com/nuxt-community/google-adsense-module
     // "@nuxtjs/google-adsense",
     // Doc: https://github.com/webcore-it/nuxt-clipboard2
-    "nuxt-clipboard2"
+    // "nuxt-clipboard2"
   ],
 
   /*
@@ -293,6 +301,10 @@ const config: NuxtConfig = {
     exclude: []
   },
 
+  /**
+   * PWA
+   * Doc: https://pwa.nuxtjs.org/
+   */
   pwa: {
     manifest: {
       name: SITE_NAME,
@@ -329,6 +341,17 @@ const config: NuxtConfig = {
         }
       }
     ]
+  },
+
+  /**
+   * AdSence
+   * Doc: https://github.com/nuxt-community/google-adsense-module
+   */
+  "google-adsense": {
+    id: process.env.ADSENSE_CLIENT_ID || "",
+    analyticsUacct: process.env.ADSENSE_ANALYTICS_ACCOUNT || "",
+    analyticsDomainName: process.env.ADSENSE_DOMAIN_NAME || "",
+    test: !process.env.ADSENSE_CLIENT_ID || process.env.NODE_ENV != "production"
   },
 
   /**
