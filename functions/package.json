@@ -9,18 +9,18 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "clean": "rm -rf nuxt"
+    "clean": "rm -rf nuxt",
+    "ts": "npx ts-node -O '{ \"module\": \"commonjs\" }'"
   },
   "engines": {
-    "node": "10"
+    "node": "12"
   },
   "main": "lib/index.js",
   "dependencies": {
-    "axios": "^0.19.2",
-    "dayjs": "^1.8.27",
+    "@sentry/node": "^6.2.2",
+    "dayjs": "^1.10.4",
     "firebase-admin": "^8.12.1",
     "firebase-functions": "^3.6.1",
-    "sharp": "^0.25.3",
     "uuid4": "^1.1.4"
   },
   "devDependencies": {

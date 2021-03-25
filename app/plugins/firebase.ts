@@ -25,7 +25,10 @@ try {
 
     // Enable Emulator
     const functions = firebase.app().functions("asia-northeast1");
-    if (process.env.NODE_ENV != "production") {
+    if (
+      process.env.NODE_ENV != "production" ||
+      (!!location && location.hostname == "localhost")
+    ) {
       const host = "localhost";
       // firebase.auth().useEmulator(`http://${host}:9099/`);
       functions.useEmulator(host, 5001);

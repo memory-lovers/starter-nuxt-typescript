@@ -1,4 +1,5 @@
 import { NuxtConfig } from "@nuxt/types";
+import * as fs from "fs";
 require("dotenv").config();
 
 const SITE_NAME = "Starter Nuxt TypeScript";
@@ -9,23 +10,42 @@ const TWITTER_ID = "@MemoryLoverz";
 
 const LOADING_COLOR = "#ff99a3";
 
+const readdirRecursively = (dir: string, dirs: string[] = []) => {
+  dirs.push(dir);
+  fs.readdirSync(dir).forEach(file => {
+    const dirPath = `${dir}/${file}`;
+    if (fs.statSync(dirPath).isDirectory()) {
+      readdirRecursively(dirPath, dirs);
+    }
+  });
+
+  return dirs;
+};
+
+const components = readdirRecursively("./app/components").map(v =>
+  v.replace("./app/components", "~/components")
+);
+console.info(`components=${JSON.stringify(components, null, 2)}`);
+
 const config: NuxtConfig = {
   srcDir: "app",
   ssr: false,
   target: "server",
-  components: ["~/components/", "~/components/nav/", "~/components/common/"],
+  components: components,
 
   env: {
     BASE_URL: process.env.BASE_URL || "",
     API_KEY: process.env.API_KEY || "",
     AUTH_DOMAIN: process.env.AUTH_DOMAIN || "",
-    DATABASE_URL: process.env.DATABASE_URL || "",
     PROJECT_ID: process.env.PROJECT_ID || "",
     STORAGE_BUCKET: process.env.STORAGE_BUCKET || "",
     MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID || "",
     APP_ID: process.env.APP_ID || "",
-    MEASUREMENT_ID: process.env.MEASUREMENT_ID || ""
+    MEASUREMENT_ID: process.env.MEASUREMENT_ID || "",
     // PUBLIC_VAPID_KEY: process.env.PUBLIC_VAPID_KEY || ""
+    ADSENSE_CLIENT_ID: process.env.ADSENSE_CLIENT_ID || "",
+    ADSENSE_ANALYTICS_ACCOUNT: process.env.ADSENSE_ANALYTICS_ACCOUNT || "",
+    ADSENSE_DOMAIN_NAME: process.env.ADSENSE_DOMAIN_NAME || ""
   },
 
   /*
@@ -107,8 +127,8 @@ const config: NuxtConfig = {
         property: "og:site_name",
         name: "og:site_name",
         content: SITE_NAME
-      }
-      // { name: "robots", content: "noindex" }
+      },
+      { name: "robots", content: "noindex" }
     ],
     link: [
       // Favicon
@@ -190,25 +210,36 @@ const config: NuxtConfig = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/axios-accessor.ts", "~/plugins/firebase"],
+  plugins: [
+    "~/plugins/axios-accessor.ts",
+    "~/plugins/firebase",
+    "~/plugins/vee-validate"
+  ],
 
   /*
    ** Nuxt.js modules
    */
   modules: [
+    // Doc: https://github.com/potato4d/nuxt-client-init-module
     "nuxt-client-init-module",
     // Doc: https://buefy.github.io/#/documentation
     "nuxt-buefy",
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
+    // Doc: https://pwa.nuxtjs.org/
     "@nuxtjs/pwa",
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",
-    "@nuxtjs/sitemap"
+    // Doc: https://github.com/nuxt-community/sitemap-module
+    "@nuxtjs/sitemap",
     // Doc: https://github.com/nuxt-community/sentry-module
-    // "@nuxtjs/sentry"
+    "@nuxtjs/sentry"
+    // Doc: https://github.com/fukuiretu/nuxt-user-agent
     // "nuxt-user-agent",
+    // Doc: https://github.com/nuxt-community/google-adsense-module
     // "@nuxtjs/google-adsense",
+    // Doc: https://github.com/webcore-it/nuxt-clipboard2
+    // "nuxt-clipboard2"
   ],
 
   /*
@@ -270,6 +301,10 @@ const config: NuxtConfig = {
     exclude: []
   },
 
+  /**
+   * PWA
+   * Doc: https://pwa.nuxtjs.org/
+   */
   pwa: {
     manifest: {
       name: SITE_NAME,
@@ -306,6 +341,17 @@ const config: NuxtConfig = {
         }
       }
     ]
+  },
+
+  /**
+   * AdSence
+   * Doc: https://github.com/nuxt-community/google-adsense-module
+   */
+  "google-adsense": {
+    id: process.env.ADSENSE_CLIENT_ID || "",
+    analyticsUacct: process.env.ADSENSE_ANALYTICS_ACCOUNT || "",
+    analyticsDomainName: process.env.ADSENSE_DOMAIN_NAME || "",
+    test: !process.env.ADSENSE_CLIENT_ID || process.env.NODE_ENV != "production"
   },
 
   /**
