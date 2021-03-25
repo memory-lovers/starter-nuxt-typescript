@@ -3,7 +3,7 @@ import { ActionTree, Store } from "vuex";
 import { ActionContext } from "vuex/types";
 import { initialiseStores, userStore } from "~/store/store-accessor";
 import axiosAccessor from "~/plugins/axios-accessor";
-import logger from "~/src/utils/logger";
+import exlogger from "~/src/utils/logger";
 
 const initializer = (store: Store<any>) => initialiseStores(store);
 export const plugins = [initializer];
@@ -23,10 +23,10 @@ export const actions: ActionTree<any, any> = {
     try {
       await axiosAccessor(server, v => {});
 
-      if (!!userStore.isLogin) return;
+      if (!!userStore.isLogin || server.route.name == "login") return;
       await userStore.loginByInit();
     } catch (error) {
-      logger.error(`Error in nuxtClientInit: ${error}`, error);
+      exlogger.error(`Error in nuxtClientInit: ${error}`, error);
     }
   }
 };

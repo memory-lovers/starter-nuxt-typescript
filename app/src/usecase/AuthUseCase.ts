@@ -65,7 +65,7 @@ class AuthUseCase {
 
     const user = await userUseCase.findById(firebaseUser.uid);
     if (!user) {
-      // await this.logout();
+      await this.logout();
       return null;
     }
 
