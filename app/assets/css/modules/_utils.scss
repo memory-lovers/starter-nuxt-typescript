@@ -5,11 +5,22 @@
   align-items: center;
 }
 
+.inline-flex-space-between {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .flex-justify-center {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
+}
+
+.justify-content-flex-end {
+  justify-content: flex-end !important;
 }
 
 .disabled-resize {
@@ -29,4 +40,16 @@
 
 .is-text-right {
   text-align: right;
+}
+
+.is-max-width-100 {
+  max-width: 100%;
+}
+
+.wrap-container {
+  font-size: 0;
+  span {
+    display: inline-block;
+    font-size: inherit;
+  }
 }

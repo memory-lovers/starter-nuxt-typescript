@@ -1,31 +1,71 @@
-// Set your colors
+// fonts
+$family-primary: "M PLUS Rounded 1c", "Kosugi Maru", "Noto Sans JP",
+  BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+  "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial",
+  sans-serif;
+
+// 1. Import the initial variables
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/functions";
+
+// 2. Set your own initial variables
+
+// 3. Set the derived variables
 $primary: #ff99a3;
 $primary-invert: findColorInvert($primary);
 $primary-light: findLightColor($primary);
 $primary-dark: findDarkColor($primary);
 
+// 4. Setup your Custom Colors
 $secondary: #ff99a3;
-$secondary-invert: findColorInvert($secondary);
-$secondary-light: findLightColor($secondary);
-$secondary-dark: findDarkColor($secondary);
-
 $accent: #ff99a3;
-$accent-invert: findColorInvert($accent);
-$accent-light: findLightColor($accent);
-$accent-dark: findDarkColor($accent);
 
+// sns
 $twitter: #1da1f2;
-$twitter-invert: findColorInvert($twitter);
 $facebook: #3b5998;
-$facebook-invert: findColorInvert($facebook);
 $line: #00b901;
-$line-invert: findColorInvert($line);
 $pocket: #dc3d50;
-$pocket-invert: findColorInvert($pocket);
 $hatebu: #00a4de;
-$hatebu-invert: findColorInvert($hatebu);
 
+// misc
 $grey: #58595b;
-$grey-invert: findColorInvert($grey);
-
 $text-color: #3a3a45;
+
+// 5. Add new color variables to the color map.
+@import "~bulma/sass/utilities/derived-variables";
+
+$addColors: (
+  "secondary": (
+    $secondary,
+    findColorInvert($secondary),
+    findLightColor($secondary),
+    findDarkColor($secondary)
+  ),
+  "accent": (
+    $accent,
+    findColorInvert($accent),
+    findLightColor($secondary),
+    findDarkColor($accent)
+  ),
+  "twitter": (
+    $twitter,
+    findColorInvert($twitter)
+  ),
+  "facebook": (
+    $facebook,
+    findColorInvert($facebook)
+  ),
+  "line": (
+    $line,
+    findColorInvert($line)
+  ),
+  "pocket": (
+    $pocket,
+    findColorInvert($pocket)
+  ),
+  "hatebu": (
+    $hatebu,
+    findColorInvert($hatebu)
+  )
+);
+$colors: mergeColorMaps($colors, $addColors);

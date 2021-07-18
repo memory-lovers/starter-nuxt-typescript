@@ -20,7 +20,19 @@ export type UpdateParam = {
   value: any;
 };
 
+export type LinkItem = {
+  title: string;
+  href?: string;
+  to?: string;
+};
+
 export interface Dialog<P> {
   show(param: P): void;
   close(): void;
 }
+
+export interface AnalyticsMock {
+  logEvent(name: string, params: any): void;
+}
+
+export type AppMode = "prod" | "stag" | "dev";

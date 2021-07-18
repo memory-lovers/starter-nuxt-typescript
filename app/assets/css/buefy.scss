@@ -1,112 +1,7 @@
-// fonts
-$family-sans-serif: "M PLUS Rounded 1c", "Kosugi Maru", "Noto Sans JP",
-  BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-  "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial",
-  sans-serif;
-
 // Import Bulma's core
-@import "~bulma/sass/utilities/_all";
 @import "~assets/css/colors";
 @import "~assets/css/variables";
 @import "~assets/css/modules/typography";
-
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
-$custom-colors: (
-  "secondary": (
-    $secondary,
-    $secondary-invert,
-    $secondary-light,
-    $secondary-dark
-  ),
-  "accent": (
-    $accent,
-    $accent-invert,
-    $accent-light,
-    $accent-dark
-  ),
-  "twitter": (
-    $twitter,
-    $twitter-invert
-  ),
-  "facebook": (
-    $facebook,
-    $facebook-invert
-  ),
-  "line": (
-    $line,
-    $line-invert
-  ),
-  "pocket": (
-    $pocket,
-    $pocket-invert
-  ),
-  "hatebu": (
-    $hatebu,
-    $hatebu-invert
-  ),
-  "grey": (
-    $grey,
-    $grey-invert
-  )
-);
-
-$colors: mergeColorMaps(
-  (
-    "white": (
-      $white,
-      $black
-    ),
-    "black": (
-      $black,
-      $white
-    ),
-    "light": (
-      $light,
-      $light-invert
-    ),
-    "dark": (
-      $dark,
-      $dark-invert
-    ),
-    "primary": (
-      $primary,
-      $primary-invert,
-      $primary-light,
-      $primary-dark
-    ),
-    "link": (
-      $link,
-      $link-invert,
-      $link-light,
-      $link-dark
-    ),
-    "info": (
-      $info,
-      $info-invert,
-      $info-light,
-      $info-dark
-    ),
-    "success": (
-      $success,
-      $success-invert,
-      $success-light,
-      $success-dark
-    ),
-    "warning": (
-      $warning,
-      $warning-invert,
-      $warning-light,
-      $warning-dark
-    ),
-    "danger": (
-      $danger,
-      $danger-invert,
-      $danger-light,
-      $danger-dark
-    )
-  ),
-  $custom-colors
-);
 
 // text
 $text: $text-color;
@@ -125,19 +20,10 @@ $footer-background-color: $primary;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+@import "~assets/css/modules/typography";
 @import "~assets/css/modules/modals";
 @import "~assets/css/modules/utils";
 @import "~assets/css/modules/spacing";
-
-.container {
-  padding: 1rem 0.5rem;
-}
-
-.button {
-  &.has-shadow {
-    box-shadow: 2px 2px 4px rgba($text-color, 0.5);
-  }
-}
 
 svg {
   fill: currentColor;
@@ -146,24 +32,33 @@ svg {
   vertical-align: -0.16rem;
 }
 
-.user-icon {
-  box-shadow: 2px 2px 4px rgba($grey, 0.2);
-  border-radius: 50%;
-  overflow: hidden;
-
-  width: 96px;
-  height: 96px;
-  margin: 8px;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
 a {
   &.has-underline {
     text-decoration: underline;
+  }
+
+  &.is-current {
+    color: currentColor;
+  }
+}
+
+.section {
+  padding: 2rem 0.8rem;
+}
+
+// ****************************
+// * Container
+// ****************************
+.container {
+  &.is-max-touch {
+    @include min($is-tablet + 1) {
+      max-width: $is-tablet;
+    }
+  }
+
+  &.is-max-mobile {
+    @include min($is-mobile + 1) {
+      max-width: $is-mobile;
+    }
   }
 }

@@ -4,7 +4,13 @@
       <div class="modal-background" @click="close"></div>
       <div class="modal-dialog-content">
         <div class="modal-dialog-wrapper">
-          <slot />
+          <div class="modal-dialog-header">
+            <slot name="header"></slot>
+          </div>
+
+          <div class="modal-dialog-body">
+            <slot />
+          </div>
 
           <slot name="footer">
             <div class="modal-dialog-button">
@@ -17,6 +23,7 @@
                 :disabled="disabled"
                 :loading="loading"
                 @click="confirm"
+                v-if="!isCloseOnly"
                 >{{ confirmLabel }}
               </b-button>
             </div>
@@ -38,6 +45,7 @@ export default class BaseDialog extends Vue {
   @Prop({ default: "OK" }) confirmLabel!: string;
   @Prop({ default: "Cancel" }) cancelLabel!: string;
   @Prop({ default: "is-primary" }) type!: string;
+  @Prop({ default: false }) isCloseOnly!: boolean;
 
   // ****************************************************
   // * computed

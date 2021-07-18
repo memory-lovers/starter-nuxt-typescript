@@ -55,7 +55,7 @@ export default class DrawerMenu extends Vue {
   private aboutItems = [
     {
       title: "公式Twitter",
-      href: "https://twitter.com/zutsuu_friends",
+      href: "https://twitter.com/MemoryLoverz",
     },
     {
       title: "要望/問い合わせ",
