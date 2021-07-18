@@ -3,10 +3,13 @@
 }
 
 .page-title {
-  font-size: 1.2rem;
+  font-weight: bold;
+  font-size: 1.8rem;
   text-align: center;
-  border-bottom: 1px dotted currentColor;
-  margin-bottom: 1rem;
+
+  @include is-mobile() {
+    font-size: 1.25rem;
+  }
 }
 
 .page-subtitle {
@@ -15,6 +18,13 @@
   border-bottom: 1px dotted currentColor;
   font-weight: bold;
   margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  color: $primary;
+  font-weight: bold;
+  text-align: center;
 }
 
 .text-valign-bottom {
@@ -29,4 +39,49 @@
   td {
     vertical-align: middle !important;
   }
+}
+
+.font-size-xxsmall {
+  font-size: 0.7rem;
+}
+
+.font-size-xsmall {
+  font-size: 0.75rem; // same ".help" font-size
+}
+
+.font-size-small {
+  font-size: 0.8rem;
+}
+
+.font-size-medium {
+  font-size: 0.9rem;
+}
+
+.is-text-bold {
+  font-weight: bold;
+}
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.word-break-all {
+  word-break: break-all;
+}
+
+.vertical-aligin-middle {
+  vertical-align: middle !important;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
 }

@@ -36,6 +36,12 @@ $is-fullhd: 1408px;
   }
 }
 
+@mixin is-touch() {
+  @media screen and (max-width: #{$is-desktop - 1}) {
+    @content;
+  }
+}
+
 @mixin is-desktop() {
   @media screen and (min-width: #{$is-desktop}) and (max-width: #{$is-widescreen - 1}) {
     @content;

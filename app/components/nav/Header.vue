@@ -1,28 +1,45 @@
 <template>
-  <nav
-    class="navbar header is-primary is-mobile"
-    role="navigation"
-    aria-label="main navigation"
-  >
-    <div class="navbar-brand">
-      <nuxt-link
-        class="navbar-item"
+  <b-navbar type="is-primary" wrapper-class="container">
+    <template #brand>
+      <b-navbar-item
+        tag="nuxt-link"
         :to="{ name: 'index' }"
         exact-active-class=""
       >
         <span class="has-text-weight-bold">Start Template</span>
-      </nuxt-link>
+      </b-navbar-item>
+    </template>
 
-      <nuxt-link class="navbar-item" :to="{ name: 'home' }" v-if="isLogin">
-        <b-icon icon="home" />
-        <span>HOME</span>
-      </nuxt-link>
+    <template #burger>
+      <HeaderDropdown
+        @logout="onClickLogout"
+        class="ml-auto mr-3 is-hidden-desktop"
+        aria-label="menu"
+        aria-expanded="false"
+      />
+    </template>
 
-      <a class="navbar-item has-text-white" @click="onClick">
-        <b-icon icon="menu" />
-      </a>
-    </div>
-  </nav>
+    <template #start>
+      <b-navbar-item tag="nuxt-link" :to="toRouteHome">
+        <strong>HOME</strong>
+      </b-navbar-item>
+    </template>
+
+    <template #end>
+      <template v-if="isLogin">
+        <HeaderDropdown class="mr-2" @logout="onClickLogout" />
+      </template>
+      <template v-else>
+        <b-navbar-item tag="div">
+          <div class="buttons">
+            <nuxt-link class="button is-inverted" :to="{ name: 'login' }">
+              <strong>Login</strong>
+            </nuxt-link>
+          </div>
+        </b-navbar-item>
+      </template>
+    </template>
+  </b-navbar>
 </template>
 
 <script lang="ts">
@@ -35,8 +52,12 @@ export default class Header extends Vue {
     return userStore.isLogin;
   }
 
-  private onClick() {
-    this.$emit("click");
+  private get toRouteHome() {
+    return { name: "index" };
+  }
+
+  private onClickLogout() {
+    this.$emit("logout");
   }
 }
 </script>

@@ -1,5 +1,4 @@
 import { NuxtConfig } from "@nuxt/types";
-import * as fs from "fs";
 require("dotenv").config();
 
 const SITE_NAME = "Starter Nuxt TypeScript";
@@ -10,28 +9,11 @@ const TWITTER_ID = "@MemoryLoverz";
 
 const LOADING_COLOR = "#ff99a3";
 
-const readdirRecursively = (dir: string, dirs: string[] = []) => {
-  dirs.push(dir);
-  fs.readdirSync(dir).forEach(file => {
-    const dirPath = `${dir}/${file}`;
-    if (fs.statSync(dirPath).isDirectory()) {
-      readdirRecursively(dirPath, dirs);
-    }
-  });
-
-  return dirs;
-};
-
-const components = readdirRecursively("./app/components").map(v =>
-  v.replace("./app/components", "~/components")
-);
-console.info(`components=${JSON.stringify(components, null, 2)}`);
-
 const config: NuxtConfig = {
   srcDir: "app",
   ssr: false,
   target: "server",
-  components: components,
+  components: [{ path: "@/components", pathPrefix: false }],
 
   env: {
     BASE_URL: process.env.BASE_URL || "",
@@ -43,6 +25,8 @@ const config: NuxtConfig = {
     APP_ID: process.env.APP_ID || "",
     MEASUREMENT_ID: process.env.MEASUREMENT_ID || "",
     // PUBLIC_VAPID_KEY: process.env.PUBLIC_VAPID_KEY || ""
+    APP_MODE: process.env.APP_MODE || "dev",
+    VERSION: process.env.VERSION || process.env.TAG_NAME || "develop",
     ADSENSE_CLIENT_ID: process.env.ADSENSE_CLIENT_ID || "",
     ADSENSE_ANALYTICS_ACCOUNT: process.env.ADSENSE_ANALYTICS_ACCOUNT || "",
     ADSENSE_DOMAIN_NAME: process.env.ADSENSE_DOMAIN_NAME || ""
@@ -57,7 +41,7 @@ const config: NuxtConfig = {
    ** Headers of the page
    */
   head: {
-    title: SITE_NAME,
+    title: SITE_TITLE,
     htmlAttrs: {
       lang: "ja"
     },
@@ -80,7 +64,6 @@ const config: NuxtConfig = {
       // For Window8/10: Shortcut Icon
       { name: "msapplication-config", content: "/browserconfig.xml" },
       { name: "msapplication-TileColor", content: "#FFFFFF" },
-      { name: "msapplication-TileImage", content: "/mstile-144×144.png" },
 
       // Twitter Card
       {
@@ -132,26 +115,35 @@ const config: NuxtConfig = {
     ],
     link: [
       // Favicon
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "shortcut icon", href: "/favicon.ico" },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32x32.png"
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/favicon-16x16.png"
+      },
       // Favicon: iPhone/iPad
       {
         rel: "apple-touch-icon",
         sizes: "180x180",
-        href: "/apple-touch-icon-180x180.png"
+        href: "/apple-touch-icon.png"
       },
       // Favicon: Safari
-      { rel: "mask-icon", href: "/safari-icon.svg", color: "#FFFFFF" },
-      // Favicon: Android Chrome
+      { rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#cb9ed9" },
+
+      // Preconnect
       {
-        rel: "icon",
-        type: "image/png",
-        sizes: "192×192",
-        href: "/android-chrome-192x192.png"
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com"
       },
       {
         rel: "preconnect",
-        href: "https://fonts.googleapis.com",
+        href: "https://fonts.gstatic.com",
         crossorigin: true
       },
       {
@@ -179,7 +171,16 @@ const config: NuxtConfig = {
         href:
           "https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap"
       },
-      { hid: "canonical", rel: "canonical", href: process.env.BASE_URL || "" }
+      // {
+      //   rel: "stylesheet",
+      //   href:
+      //     "https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap"
+      // },
+      {
+        hid: "canonical",
+        rel: "canonical",
+        href: `${process.env.BASE_URL}/` || ""
+      }
     ]
   },
   /*
@@ -211,9 +212,9 @@ const config: NuxtConfig = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    "~/plugins/axios-accessor.ts",
-    "~/plugins/firebase",
-    "~/plugins/vee-validate"
+    { src: "~/plugins/firebase", mode: "client" },
+    { src: "~/plugins/vee-validate", mode: "client" },
+    { src: "~/plugins/api-accessor.ts", mode: "client" }
   ],
 
   /*
@@ -240,6 +241,10 @@ const config: NuxtConfig = {
     // "@nuxtjs/google-adsense",
     // Doc: https://github.com/webcore-it/nuxt-clipboard2
     // "nuxt-clipboard2"
+    // Doc: https://image.nuxtjs.org
+    // "@nuxt/image"
+    // Doc: https://content.nuxtjs.org/ja
+    // "@nuxt/content"
   ],
 
   /*
@@ -316,7 +321,7 @@ const config: NuxtConfig = {
       background_color: "#ffffff",
       theme_color: LOADING_COLOR,
       orientation: "any",
-      icons: [36, 48, 72, 96, 128, 144, 152, 192, 256, 384, 512].map(v => {
+      icons: [192, 256].map(v => {
         return {
           src: `/android-chrome-${v}x${v}.png`,
           sizes: `${v}x${v}`,
@@ -324,23 +329,7 @@ const config: NuxtConfig = {
         };
       })
       // gcm_sender_id: process.env.MESSAGING_SENDER_ID || ""
-    },
-    runtimeCaching: [
-      {
-        urlPattern: `^https://fonts.googleapis.com/`,
-        handler: "cacheFirst",
-        method: "GET",
-        strategyOptions: {
-          cacheName: "google-fonts-cache",
-          cacheExpiration: {
-            maxAgeSeconds: 60 * 60 * 24 * 30
-          },
-          cacheableResponse: {
-            statuses: [0, 200]
-          }
-        }
-      }
-    ]
+    }
   },
 
   /**
@@ -362,6 +351,38 @@ const config: NuxtConfig = {
     dsn: process.env.SENTRY_DNS || "",
     disabled: !process.env.SENTRY_DNS || process.env.NODE_ENV != "production",
     config: { environment: process.env.NODE_ENV || "development" }
+  },
+
+  /**
+   * Nuxt/Image
+   * Doc: https://image.nuxtjs.org
+   */
+  image: {},
+
+  /**
+   * Nuxt/Content
+   * Doc: https://content.nuxtjs.org/ja
+   */
+  content: {
+    markdown: {
+      remarkPlugins: [
+        [
+          "remark-autolink-headings",
+          {
+            behavior: "append",
+            content: {
+              type: "element",
+              tagName: "b-icon",
+              properties: {
+                icon: "link-variant",
+                size: "is-small",
+                className: ["ml-1"]
+              }
+            }
+          }
+        ]
+      ]
+    }
   },
 
   /*
@@ -391,6 +412,7 @@ const config: NuxtConfig = {
   server: {
     port: 3000, // デフォルト: 3000
     host: "localhost" // デフォルト: localhost
+    // host: "0.0.0.0" // デフォルト: localhost
   },
 
   dotenv: {

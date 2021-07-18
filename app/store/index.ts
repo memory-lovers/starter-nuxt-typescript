@@ -2,7 +2,7 @@ import { Context } from "@nuxt/types";
 import { ActionTree, Store } from "vuex";
 import { ActionContext } from "vuex/types";
 import { initialiseStores, userStore } from "~/store/store-accessor";
-import axiosAccessor from "~/plugins/axios-accessor";
+import axiosAccessor from "~/plugins/api-accessor";
 import exlogger from "~/src/utils/logger";
 
 const initializer = (store: Store<any>) => initialiseStores(store);

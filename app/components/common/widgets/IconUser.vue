@@ -1,22 +1,22 @@
 <template>
-  <a
-    :href="href"
-    target="_blank"
-    rel="noopener"
-    @click.stop=""
-    :class="classes"
-  >
-    <slot />
-  </a>
+  <figure class="user-icon is-avatar" v-if="url">
+    <img
+      :src="url"
+      width="40px"
+      height="40px"
+      alt="ユーザアイコン"
+      decoding="async"
+      loading="lazy"
+    />
+  </figure>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "nuxt-property-decorator";
+import { Component, Prop, Vue } from "nuxt-property-decorator";
 
 @Component
-export default class HrefLink extends Vue {
-  @Prop({ required: true }) href!: string;
-  @Prop() classes!: any;
+export default class IconUser extends Vue {
+  @Prop({ required: true }) url!: string;
   // ****************************************************
   // * computed
   // ****************************************************

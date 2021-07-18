@@ -5,3 +5,4 @@ if (admin.apps.length < 1) {
 }
 
 export default admin;
+export const inc = admin.firestore.FieldValue.increment;

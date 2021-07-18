@@ -1,28 +1,30 @@
 <template>
-  <div class="container">
-    <h2 class="page-title">ログイン</h2>
+  <section class="section">
+    <div class="container">
+      <h2 class="page-title">ログイン</h2>
 
-    <div class="has-text-centered">
-      <b-button
-        class="is-twitter has-shadow"
-        @click="login('twitter')"
-        :loading="loading"
-        icon-left="twitter"
-        >Twitterでログイン
-      </b-button>
-      <b-button
-        class="is-white has-shadow"
-        @click="login('google')"
-        :loading="loading"
-        icon-left="google"
-        >Googleでログイン
-      </b-button>
+      <div class="flex-column-center mt-4">
+        <!-- <b-button
+          class="is-twitter my-2"
+          @click="login('twitter')"
+          :loading="loading"
+          icon-left="twitter"
+          >Twitterでログイン
+        </b-button> -->
+        <b-button
+          class="is-white my-2"
+          @click="login('google')"
+          :loading="loading"
+          icon-left="google"
+          >Googleでログイン
+        </b-button>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, mixins } from "nuxt-property-decorator";
+import { Component, mixins } from "nuxt-property-decorator";
 import { HeadInfo } from "types";
 import HeadMixin from "~/mixins/HeadMixin";
 import { notifyHelper } from "~/src/helper/NotifyHelper";

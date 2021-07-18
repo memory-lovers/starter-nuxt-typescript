@@ -31,6 +31,26 @@ $spacing-values: ("0": 0, "1": 0.25rem, "2": 0.5rem, "3": 0.75rem, "4": 1rem, "5
         #{$property}-bottom: $value !important
 
 
+@each $property, $shortcut in $spacing-shortcuts
+  // All directions
+  .#{$shortcut}-auto
+    #{$property}: auto !important
+  // Cardinal directions
+  @each $direction, $suffix in $spacing-directions
+    .#{$shortcut}#{$suffix}-auto
+      #{$property}-#{$direction}: auto !important
+  // Horizontal axis
+  @if $spacing-horizontal != null
+    .#{$shortcut}#{$spacing-horizontal}-auto
+      #{$property}-left: auto !important
+      #{$property}-right: auto !important
+  // Vertical axis
+  @if $spacing-vertical != null
+    .#{$shortcut}#{$spacing-vertical}-auto
+      #{$property}-top: auto !important
+      #{$property}-bottom: auto !important
+
+
 $gap-shortcuts: ("row": "row", "column": "col") !default
 
 @each $property, $shortcut in $gap-shortcuts
