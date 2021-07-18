@@ -12,7 +12,7 @@
   "author": "Memory Lovers",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dayjs": "^1.8.31",
     "firebase-admin": "^9.0.0",
     "flat": "^5.0.0",
