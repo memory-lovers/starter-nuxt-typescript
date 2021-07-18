@@ -1,12 +1,11 @@
 <template>
   <div class="main-container">
-    <Header @click="activeMenu = !activeMenu" />
+    <Header @logout="onClickLogout" />
 
     <section class="main-content">
       <nuxt />
     </section>
 
-    <DrawerMenu :active.sync="activeMenu" @logout="onClickLogout" />
     <Footer />
   </div>
 </template>

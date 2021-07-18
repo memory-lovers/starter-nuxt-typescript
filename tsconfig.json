@@ -17,7 +17,7 @@
       "~/*": ["./app/*"],
       "@/*": ["./app/*"]
     },
-    "types": ["@types/node", "@nuxt/types", "./types"]
+    "types": ["@types/node", "@nuxt/types", "@nuxtjs/axios", "./types"]
   },
   "include": ["app/**/*"],
   "exclude": ["app/node_modules"]

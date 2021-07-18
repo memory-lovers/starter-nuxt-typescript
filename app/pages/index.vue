@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <section class="section">
+  <section class="section">
+    <div class="container">
       <div class="columns">
         <card title="Free" icon="github-circle">
           Open source on
@@ -21,8 +21,8 @@
           >No other internal dependency</card
         >
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">

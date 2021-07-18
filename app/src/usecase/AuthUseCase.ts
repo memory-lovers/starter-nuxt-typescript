@@ -119,7 +119,7 @@ class AuthUseCase {
     const newUser: User = {
       uid: credential.user.uid,
       name: credential.user.displayName || "",
-      // photoURL: credential.user.photoURL || "",
+      photoURL: credential.user.photoURL || "",
       // twitterId: twitterId,
       createAt: current,
       updateAt: current
