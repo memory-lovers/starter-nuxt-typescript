@@ -1,3 +1,4 @@
+import { OrderByDirection } from "@firebase/firestore-types";
 import { User } from "./model";
 
 export interface HeadInfo {
@@ -36,3 +37,11 @@ export interface AnalyticsMock {
 }
 
 export type AppMode = "prod" | "stag" | "dev";
+
+// QueryParam
+export type QueryConfig<T> = {
+  last?: T;
+  limit?: number | null;
+  orderKey?: string;
+  orderDir?: OrderByDirection;
+};

@@ -10,7 +10,7 @@
       </b-navbar-item>
     </template>
 
-    <template #burger>
+    <template #burger v-if="isLogin">
       <HeaderDropdown
         @logout="onClickLogout"
         class="ml-auto mr-3 is-hidden-desktop"
@@ -20,7 +20,7 @@
     </template>
 
     <template #start>
-      <b-navbar-item tag="nuxt-link" :to="toRouteHome">
+      <b-navbar-item tag="nuxt-link" :to="toRouteHome" v-if="isLogin">
         <strong>HOME</strong>
       </b-navbar-item>
     </template>
@@ -61,26 +61,3 @@ export default class Header extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.logo {
-  padding: 0 8px;
-  > img {
-    max-height: $navbar-height;
-  }
-}
-
-.navbar {
-  &.is-mobile {
-    display: block;
-  }
-}
-
-.navbar-brand {
-  > .navbar-item {
-    &:nth-last-of-type(1) {
-      margin-left: auto;
-    }
-  }
-}
-</style>

@@ -1,31 +1,22 @@
 <template>
-  <a
-    class="href-link"
-    :href="href"
-    target="_blank"
-    rel="noopener"
-    @click.stop=""
-    :class="classes"
-  >
-    <slot />
-  </a>
+  <div class="panel-block panel-list-item-empty">
+    <div class="has-text-centered has-text-help">
+      <slot></slot>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "nuxt-property-decorator";
 
 @Component
-export default class HrefLink extends Vue {
-  @Prop({ required: true }) href!: string;
-  @Prop() classes!: any;
+export default class PanelListItemEmpty extends Vue {
   // ****************************************************
   // * computed
   // ****************************************************
-
   // ****************************************************
   // * methods
   // ****************************************************
-
   // ****************************************************
   // * emit
   // ****************************************************

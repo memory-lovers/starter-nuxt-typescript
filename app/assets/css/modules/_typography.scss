@@ -6,9 +6,18 @@
   font-weight: bold;
   font-size: 1.8rem;
   text-align: center;
+  margin-bottom: 1.5rem;
 
   @include is-mobile() {
     font-size: 1.25rem;
+  }
+
+  &.is-left {
+    text-align: left;
+  }
+
+  &.is-right {
+    text-align: right;
   }
 }
 

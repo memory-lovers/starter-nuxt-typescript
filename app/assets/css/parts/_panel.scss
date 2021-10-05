@@ -1,0 +1,85 @@
+// ****************************
+// * Heading
+// ****************************
+.panel-heading {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65em 1em;
+}
+
+.panel-heading-label {
+  font-size: 1.2rem;
+
+  @include is-touch() {
+    font-size: 0.9rem;
+  }
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  .icon {
+    margin-left: 0.2rem;
+    margin-top: 0.1rem;
+  }
+}
+
+// ****************************
+// * Item
+// ****************************
+.panel-list-item {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  column-gap: 0.5rem;
+
+  cursor: default;
+
+  @include is-touch() {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &.is-nolabel {
+    display: block;
+  }
+}
+
+.panel-list-item-label {
+  font-weight: bold;
+  @include is-touch() {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.panel-list-item-content {
+  max-width: 100%;
+}
+
+.panel-list-item-content-wrapper {
+  display: block;
+  max-width: 100%;
+
+  &.is-nolabel {
+    display: block;
+  }
+}
+
+// ****************************
+// * Empty
+// ****************************
+.panel-list-item-empty {
+  min-height: 200px;
+}
+
+// ****************************
+// * Loading
+// ****************************
+.panel-list-item-loading {
+  min-height: 50px;
+  position: relative;
+}

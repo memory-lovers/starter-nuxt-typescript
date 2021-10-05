@@ -57,7 +57,7 @@ export default class Footer extends Vue {
   private get version(): string | null {
     const ver = process.env.VERSION;
     const mode = process.env.APP_MODE;
-    if (!!ver && !!mode) return `${ver}@${mode}`;
+    if (!!ver && !!mode && mode != "prod") return `${ver}@${mode}`;
     else return `${ver}`;
   }
 
@@ -85,7 +85,6 @@ export default class Footer extends Vue {
   ];
 }
 </script>
-
 
 <style lang="scss">
 .footer {
@@ -124,6 +123,10 @@ export default class Footer extends Vue {
   @include is-touch() {
     flex-flow: column-reverse;
     align-items: flex-end;
+  }
+
+  &.is-right {
+    justify-content: flex-end;
   }
 
   span {

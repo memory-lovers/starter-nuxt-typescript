@@ -6,6 +6,7 @@
       <nuxt />
     </section>
 
+    <portal to="dialog"></portal>
     <Footer />
   </div>
 </template>
