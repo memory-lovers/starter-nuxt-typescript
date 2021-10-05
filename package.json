@@ -34,9 +34,10 @@
     "nuxt-client-init-module": "^0.3.0",
     "nuxt-clipboard2": "^0.2.1",
     "nuxt-property-decorator": "^2.9.1",
+    "portal-vue": "^2.1.7",
     "universal-cookie": "^4.0.4",
-    "vee-validate": "^3.4.10",
-    "uuid4": "^1.1.4"
+    "uuid4": "^1.1.4",
+    "vee-validate": "^3.4.10"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.7",

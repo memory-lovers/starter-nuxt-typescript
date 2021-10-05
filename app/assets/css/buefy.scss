@@ -10,8 +10,11 @@ $title-color: $text;
 $panel-block-color: $text;
 
 // Links
-$link: $primary;
-$link-invert: $primary-invert;
+$link: $text;
+$link-hover: $primary;
+$link-hover-border: $primary;
+$link-invert: $primary;
+$link-focus: $primary;
 $link-focus-border: $primary;
 
 // Fottoer
@@ -22,6 +25,8 @@ $dimensions: 16 24 32 48 64 96 128 150;
 
 // Dropdown
 $dropdown-menu-min-width: 200px;
+$dropdown-item-active-background-color: $primary-light;
+$dropdown-item-active-color: $text;
 
 // Import Bulma and Buefy styles
 @import "~bulma";
@@ -31,6 +36,8 @@ $dropdown-menu-min-width: 200px;
 @import "~assets/css/modules/utils";
 @import "~assets/css/modules/spacing";
 
+@import "~assets/css/parts/panel";
+
 svg {
   fill: currentColor;
   width: 100%;
@@ -39,6 +46,10 @@ svg {
 }
 
 a {
+  &.href-link {
+    text-decoration: underline;
+  }
+
   &.has-underline {
     text-decoration: underline;
   }
@@ -46,11 +57,18 @@ a {
   &.is-current {
     color: currentColor;
   }
-}
 
-.button {
-  &:not(.is-outlined):not(.is-inverted) {
-    box-shadow: 2px 2px 6px rgba($grey, 0.75) !important;
+  &.has-icon-link {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    padding-left: 0.8rem;
+
+    .icon {
+      margin-left: 0.2rem;
+    }
+
+    border-bottom: 2px solid currentColor;
   }
 }
 
@@ -82,7 +100,9 @@ a {
 }
 
 .section {
-  padding: 2rem 0.8rem;
+  @include is-mobile() {
+    padding: 2rem 0.8rem;
+  }
 }
 
 // ****************************
@@ -139,9 +159,18 @@ a {
     }
   }
 
+  .navbar-item-dropdown {
+    align-self: stretch;
+
+    > .dropdown-trigger > a.navbar-item {
+      color: white !important;
+    }
+  }
+
   &.is-hero {
     .navbar-start > a.navbar-item,
-    .navbar-end > a.navbar-item {
+    .navbar-end > a.navbar-item,
+    .navbar-item-dropdown {
       align-self: center;
     }
   }
@@ -160,4 +189,12 @@ a {
       margin-right: 0.5rem;
     }
   }
+}
+
+// ****************************
+// * misc
+// ****************************
+.has-shadow {
+  box-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.1),
+    0 0px 0 1px rgba($scheme-invert, 0.02);
 }

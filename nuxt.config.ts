@@ -4,7 +4,7 @@ require("dotenv").config();
 const SITE_NAME = "Starter Nuxt TypeScript";
 const SITE_TITLE = "Starter Nuxt TypeScript";
 const SITE_DESC = "Starter Nuxt TypeScript";
-const COPYRIGHT = "Memory Lovers";
+const COPYRIGHT = "Memory Lovers, LLC.";
 const TWITTER_ID = "@MemoryLoverz";
 
 const LOADING_COLOR = "#ff99a3";
@@ -234,7 +234,7 @@ const config: NuxtConfig = {
     // Doc: https://github.com/nuxt-community/sitemap-module
     "@nuxtjs/sitemap",
     // Doc: https://github.com/nuxt-community/sentry-module
-    "@nuxtjs/sentry"
+    "@nuxtjs/sentry",
     // Doc: https://github.com/fukuiretu/nuxt-user-agent
     // "nuxt-user-agent",
     // Doc: https://github.com/nuxt-community/google-adsense-module
@@ -245,6 +245,8 @@ const config: NuxtConfig = {
     // "@nuxt/image"
     // Doc: https://content.nuxtjs.org/ja
     // "@nuxt/content"
+    // Doc: https://github.com/LinusBorg/portal-vue
+    "portal-vue/nuxt"
   ],
 
   /*
@@ -390,13 +392,13 @@ const config: NuxtConfig = {
    */
   build: {
     publicPath: "/assets/",
-    extractCSS: true,
+    extractCSS: false,
 
-    terser: {
-      terserOptions: {
-        compress: { drop_console: process.env.NODE_ENV === "production" }
-      }
-    },
+    // terser: {
+    //   terserOptions: {
+    //     compress: { drop_console: process.env.NODE_ENV === "production" }
+    //   }
+    // },
 
     /*
      ** You can extend webpack config here

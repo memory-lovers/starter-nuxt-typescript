@@ -64,10 +64,7 @@ class AuthUseCase {
     if (!firebaseUser || !firebaseUser.uid) return null;
 
     const user = await userUseCase.findById(firebaseUser.uid);
-    if (!user) {
-      await this.logout();
-      return null;
-    }
+    if (!user) return null;
 
     // set Sentry User
     this.setSentry(user);
@@ -125,7 +122,7 @@ class AuthUseCase {
       updateAt: current
     };
 
-    await userUseCase.add(newUser);
+    await userUseCase.save(newUser);
 
     // set Sentry User
     this.setSentry(newUser);
