@@ -45,7 +45,7 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "@types/lodash": "^4.14.175",
     "@types/nanoid": "^3.0.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^10.1.0",
     "vuex-module-decorators": "^1.0.1"
   }
