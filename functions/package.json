@@ -19,7 +19,7 @@
   "dependencies": {
     "@sentry/node": "^6.2.2",
     "dayjs": "^1.10.4",
-    "firebase-admin": "^9.11.0",
+    "firebase-admin": "^11.4.1",
     "firebase-functions": "^3.14.1",
     "uuid4": "^1.1.4"
   },
